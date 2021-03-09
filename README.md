@@ -2,7 +2,7 @@
 ## Сайт для учёта рабочего времени сотрудников IT-компании.
 
 ### Связь с разработчиками
-- <b>newlinefu</b Александр Смирнов - newlinefu@gmail.com
+- <b>newlinefu</b> Александр Смирнов - newlinefu@gmail.com
 - <b>alzhelez</b> Александр Железной - alzhelez2000@gmail.com
 - <b>arsvrn</b> Арсений Шаталов- shatalov.102030@gmail.com
 
