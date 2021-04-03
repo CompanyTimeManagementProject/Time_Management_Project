@@ -1,8 +1,9 @@
 import {createStore, compose, applyMiddleware, combineReducers} from 'redux'
 import thunkMiddleware from 'redux-thunk'
+import authReducer from './reducers/auth_reducer'
 
 const reducers = combineReducers({
-
+    auth: authReducer
 })
 
 // Выбирается функция compose в зависимости от наличия плагина Redux DevTools

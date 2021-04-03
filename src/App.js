@@ -1,14 +1,23 @@
 import React from 'react'
-import {Header, Text} from 'grommet'
+import {BrowserRouter} from 'react-router-dom'
+import Loader from './components/utils_components/Loader'
+import Header from './components/header/Header'
+import AuthForm from './components/auth_form/AuthForm'
 
-export default function App() {
+
+export default function App(props) {
+
+    const {authId, loading, onSubmitAuth} = props
+
+    if(loading)
+        return <Loader />
+    if(!authId)
+        return <AuthForm onSubmitAuth={onSubmitAuth}/>
     return (
-        <Header
-            level={5}
-            pad={'medium'}
-            background={'brand'}
-        >
-            Customize project
-        </Header>
+        <BrowserRouter>
+            <>
+                <Header headerLogo={'ITime'}/>
+            </>
+        </BrowserRouter>
     )
 }
