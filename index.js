@@ -5,7 +5,6 @@ const config = require('./config')
 const vars = require('./middlewares/vars')
 const path = require('path')
 
-
 const connection = mysql.createConnection({
     host: config.SQL_CONNECTION_HOST,
     user: config.SQL_CONNECTION_USER,
@@ -15,7 +14,6 @@ const connection = mysql.createConnection({
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-//Установка объекта подключения к базе в объект req
 app.use(vars(connection))
 
 app.listen(config.PORT, () => {
