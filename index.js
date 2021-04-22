@@ -4,7 +4,6 @@ const mysql = require('mysql2')
 const config = require('./config')
 const vars = require('./middlewares/vars')
 const path = require('path')
-const {notificationsTimer} = require('./utils/utls')
 
 
 const connection = mysql.createConnection({
@@ -24,7 +23,7 @@ app.listen(config.PORT, () => {
         if(err) console.log(err)
         else {
             console.log('successful')
-            notificationsTimer(connection)
+            //notificationsTimer(connection)
         }
     })
 })
