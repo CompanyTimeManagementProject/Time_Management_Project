@@ -3,7 +3,7 @@ import {BrowserRouter} from 'react-router-dom'
 import Loader from './components/utils_components/Loader'
 import Header from './components/header/Header'
 import AuthForm from './components/auth_form/AuthForm'
-
+import AsideContainer from './components/main/aside/AsideContainer'
 
 export default function App(props) {
 
@@ -17,6 +17,9 @@ export default function App(props) {
         <BrowserRouter>
             <>
                 <Header headerLogo={'ITime'}/>
+                <main>
+                    <AsideContainer />
+                </main>
             </>
         </BrowserRouter>
     )
