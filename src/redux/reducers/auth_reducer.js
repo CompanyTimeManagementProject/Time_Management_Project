@@ -1,4 +1,4 @@
-import {developersAPI} from '../../API'
+import {developersAPI} from '../../api'
 import {successResponseCondition} from '../utils'
 
 const SET_AUTH_ID = 'SET_AUTH_ID'
@@ -39,6 +39,13 @@ function setAdminRulesAC(isAdmin) {
     return {
         type: SET_ADMIN_RULES,
         isAdmin
+    }
+}
+
+export function logout() {
+    return dispatch => {
+        dispatch(setAuthId(null))
+        dispatch(setAdminRulesAC(false))
     }
 }
 
