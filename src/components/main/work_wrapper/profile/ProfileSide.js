@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {withRouter} from 'react-router-dom'
 import Profile from './Profile'
-import {developersAPI} from '../../../../API/api'
-import {logout} from "../../../../redux/reducers/auth_reducer";
+import {developersAPI} from '../../../../api'
 
 function ProfileSide(props) {
 
@@ -57,7 +56,7 @@ function ProfileSide(props) {
 
         //Защита от случайного изменения прав по схеме
         //администратор -> обычный разработчик
-        if((profileInformation.isAdmin != values.isAdmin) && profileInformation.isAdmin) {
+        if((profileInformation.isAdmin !== values.isAdmin) && profileInformation.isAdmin) {
             // eslint-disable-next-line no-restricted-globals
             choice = confirm('Are you sure you want to stop being an administrator? Only another administrator can restore the authority')
         }

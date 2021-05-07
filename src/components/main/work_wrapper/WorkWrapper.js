@@ -5,9 +5,10 @@ import Projects from './projects/all_projects/ProjectsContainer'
 import DevelopersContainer from './developers/DevelopersContainer'
 import PutDeveloperForm from './put_developer_form/PutDeveloperForm'
 import WorkWithProjectForm from './work_with_project_form/WorkWithProjectForm'
-import ProjectsManage from './projects/projects_manage/ProjectsManageSide'
-import AllNotificationsContainer from './all_notifications/AllNotificationsContainer'
+import AllNotificationsContainer from './notifications/AllNotificationsContainer'
 import * as style from './work_wrapper.module.css'
+import ProjectsManage from "./projects/projects_manage/ProjectsManage";
+import ProjectsManageSide from "./projects/projects_manage/ProjectsManageSide";
 
 
 export default function WorkWrapper(props) {
@@ -59,7 +60,7 @@ export default function WorkWrapper(props) {
                         : () => <Redirect to={'/profile'}/>
                     }/>
 
-                    <Route path={`/single_project/:id?`} render={() => <ProjectsManage
+                    <Route path={`/single_project/:id?`} render={() => <ProjectsManageSide
                         getProjectById={getProjectById}
                         actualProject={actualProject}
                         deleteProject={deleteProject}
@@ -69,8 +70,7 @@ export default function WorkWrapper(props) {
                     />}/>
 
                     <Route path={`/notifications/:page?`}
-                           render={() => <AllNotificationsContainer
-                           />}/>
+                           render={() => <AllNotificationsContainer />}/>
 
                 </>
             }

@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import Developers from './DevelopersSide'
-import * as selectors from '../../../../selectors/selectors'
+import * as selectors from '../../../../redux/selectors/index'
 import {getDevelopers, getTotalCount} from '../../../../redux/reducers/developers_reducer'
 import React from 'react'
 import {NavLink} from 'react-router-dom'

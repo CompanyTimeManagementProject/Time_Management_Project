@@ -1,10 +1,10 @@
 import React from 'react'
-import Loader from '../../../utls_components/loader/Loader'
+import Loader from '../../../utils_components/Loader'
 import DeveloperSearchForm from './DeveloperSearchForm'
-import Pagination from '../../../utls_components/pagination/Pagination'
+import Pagination from '../../../utils_components/pagination/Pagination'
 import {Redirect} from 'react-router-dom'
 import * as style from './developers.module.css'
-import SingleDeveloper from './single_developer/SingleDeveloper'
+import SingleDeveloper from './developer/Developer'
 
 export default function Developers(props) {
 

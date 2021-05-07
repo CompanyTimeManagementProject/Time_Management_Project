@@ -1,6 +1,6 @@
 import React from 'react'
-import {NavLink, Redirect} from 'react-router-dom'
-import Loader from '../../../utls_components/loader/Loader'
+import {Redirect} from 'react-router-dom'
+import Loader from '../../../utils_components/Loader'
 import ProfileChangeForm from './profile_info_block/ProfileChangeForm'
 import ProfileInfo from './profile_info_block/ProfileInfo'
 import * as style from './profile.module.css'

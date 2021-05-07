@@ -1,7 +1,7 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
 import WorkWrapper from './WorkWrapper'
-import {developersAPI} from '../../../API/api'
+import {developersAPI} from '../../../api'
 
 function WorkWrapperWithSide(props) {
     const {

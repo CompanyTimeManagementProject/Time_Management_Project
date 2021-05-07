@@ -1,4 +1,4 @@
-import {successResponseCondition} from '../utils/utils'
+import {successResponseCondition} from '../utils'
 import {notificationsAPI} from '../../api'
 
 const SET_NOTIFICATIONS_LIST = 'SET_NOTIFICATIONS_LIST'

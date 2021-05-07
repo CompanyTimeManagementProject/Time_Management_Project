@@ -1,14 +1,15 @@
 import {connect} from 'react-redux'
 import WorkWrapper from './WorkWrapperWithSide'
-import * as selectors from '../../../selectors/selectors'
+import * as selectors from '../../../redux/selectors'
 import {
     putProject,
     getProjectById,
     deleteProject,
     changeProject
 } from '../../../redux/reducers/projects_reducer'
+
 import {putDeveloper} from '../../../redux/reducers/developers_reducer'
-import {putTask} from '../../../redux/reducers/tasks_reducer'
+
 
 function mapStateToProps(state) {
     return {
@@ -23,6 +24,6 @@ export default connect(mapStateToProps, {
     getProjectById,
     deleteProject,
     changeProject,
-    putTask,
+
     putDeveloper
 })(WorkWrapper)

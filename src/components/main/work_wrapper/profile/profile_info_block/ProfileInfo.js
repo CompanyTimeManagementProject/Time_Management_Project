@@ -1,5 +1,5 @@
 import React from 'react'
-import {dateStringFormat} from '../../../../../utils/formats'
+import {dateStringFormat} from '../../../../utils/formats'
 import * as style from '../profile.module.css'
 
 export default function ProfileInfo({profileInformation}) {

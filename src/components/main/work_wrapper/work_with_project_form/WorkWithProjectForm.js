@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {useFormik} from 'formik'
 import {NavLink} from 'react-router-dom'
 import * as Yup from 'yup'
-import Loader from '../../../utls_components/loader/Loader'
+import Loader from '../../../utils_components/Loader'
 import * as style from './work_with_project_form.module.css'
 
 export default function WorkWithProjectForm(props) {

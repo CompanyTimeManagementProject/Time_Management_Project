@@ -2,7 +2,7 @@ import {useFormik} from 'formik'
 import {NavLink} from 'react-router-dom'
 import * as Yup from 'yup'
 import React from 'react'
-import {withRouter, Redirect} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import * as style from './put_developer_form.module.css'
 
 function PutDeveloperForm({onSubmitPutDeveloper}) {

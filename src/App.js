@@ -4,6 +4,7 @@ import Loader from './components/utils_components/Loader'
 import Header from './components/header/Header'
 import AuthForm from './components/auth_form/AuthForm'
 import AsideContainer from './components/main/aside/AsideContainer'
+import WorkWrapperContainer from "./components/main/work_wrapper/WorkWrapperContainer";
 
 export default function App(props) {
 
@@ -19,6 +20,7 @@ export default function App(props) {
                 <Header headerLogo={'ITime'}/>
                 <main>
                     <AsideContainer />
+                    <WorkWrapperContainer />
                 </main>
             </>
         </BrowserRouter>
