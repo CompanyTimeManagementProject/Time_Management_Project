@@ -5,6 +5,7 @@ const mysql = require('mysql2')
 const config = require('./config')
 const vars = require('./middlewares/vars')
 const developersRouter = require('./routes/developers_router')
+const projectsRouter = require('./routes/projects_router')
 const notificationsRouter = require('./routes/notification_router')
 const path = require('path')
 const {notificationsTimer} = require('./utils/utls')
@@ -31,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(vars(connection))
 
 app.use('/developers', developersRouter)
+app.use('/projects', projectsRouter)
 app.use('/notifications', notificationsRouter)
 
 app.listen(config.PORT, () => {
