@@ -1,3 +1,4 @@
+const {getDyingTasks, getDeadTasks} = require('../routes/queries/tasks_queries')
 const {putNotification, checkByUnique} = require('../routes/queries/notifications_queries')
 const {getDeveloperById} = require('../routes/queries/developers_queries')
 const mysql = require('mysql2')
