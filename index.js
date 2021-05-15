@@ -6,6 +6,8 @@ const config = require('./config')
 const vars = require('./middlewares/vars')
 const developersRouter = require('./routes/developers_router')
 const projectsRouter = require('./routes/projects_router')
+const tasksRouter = require('./routes/tasks_router')
+const changingDatesRouter = require('./routes/changing_dates_router')
 const notificationsRouter = require('./routes/notification_router')
 const path = require('path')
 const {notificationsTimer} = require('./utils/utls')
@@ -33,6 +35,8 @@ app.use(vars(connection))
 
 app.use('/developers', developersRouter)
 app.use('/projects', projectsRouter)
+app.use('/tasks', tasksRouter)
+app.use('/changing_dates', changingDatesRouter)
 app.use('/notifications', notificationsRouter)
 
 app.listen(config.PORT, () => {
