@@ -273,3 +273,86 @@ export const notificationsAPI = {
         return request.post(url, { content })
     }
 }
+
+export const tasksAPI = {
+    getTasks(projectId, title, page, pagSize) {
+        const url = title
+            ? `tasks/get/${projectId}?title=${title}&page=${page - 1}&pagSize=${pagSize}`
+            : `tasks/get/${projectId}?page=${page - 1}&pagSize=${pagSize}`
+
+        return request.get(url)
+
+    },
+    getDevelopersTasks(projectId, title, page, pagSize, developerId) {
+        const url = title
+            ? `tasks/get/${projectId}?developerId=${developerId}&title=${title}&page=${page - 1}&pagSize=${pagSize}`
+            : `tasks/get/${projectId}?developerId=${developerId}&page=${page - 1}&pagSize=${pagSize}`
+
+        return request.get(url)
+
+    },
+
+    getTask(taskId) {
+        const url = `tasks/get_single/${taskId}`
+
+        return request.get(url)
+    },
+
+    getCount(projectId, title) {
+        const url = title
+            ? `tasks/count/${projectId}?title=${title}`
+            : `tasks/count/${projectId}`
+
+        return request.get(url)
+    },
+    getDevelopersTasksCount(projectId, title, developerId) {
+        const url = title
+            ? `tasks/count/${projectId}?developerId=${developerId}&title=${title}`
+            : `tasks/count/${projectId}?developerId=${developerId}`
+
+        return request.get(url)
+    },
+
+    deleteTask(taskId) {
+        const url = `tasks/delete/${taskId}`
+
+        return request.get(url)
+    },
+
+    updateTask(taskId, title, description, results, leadId) {
+        const url = `tasks/update/${taskId}`
+        return request.post(url, {
+            title,
+            description,
+            results,
+            leadId
+        })
+    },
+
+    putTask(title, description, results, actualDeadline, plannedDeadline, leadId, projectId) {
+        const url = `tasks/put`
+
+        return request.post(url, {
+            title,
+            description,
+            results,
+            actualDeadline,
+            plannedDeadline,
+            leadId,
+            projectId
+        })
+    },
+
+    deleteDeveloperFromTask(taskId, developerId) {
+        const url = `tasks/delete_developer/${taskId}/${developerId}`
+        return request.get(url)
+    },
+
+    putDeveloperToTask(taskId, developerId) {
+        const url = `tasks/add_developer`
+        return request.post(url, {
+            taskId,
+            developerId
+        })
+    }
+}

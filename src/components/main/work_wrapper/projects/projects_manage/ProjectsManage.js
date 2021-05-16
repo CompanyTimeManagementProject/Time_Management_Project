@@ -7,6 +7,8 @@ import WorkWithProjectForm from '../../work_with_project_form/WorkWithProjectFor
 
 import React from 'react'
 import * as style from './projects_manage.module.css'
+import WorkWithTaskForm from "./work_with_task_form/WorkWithTaskForm";
+import TasksContainer from "./project_tasks/TasksContainer";
 
 export default function ProjectsManage(props) {
     const {
@@ -19,8 +21,8 @@ export default function ProjectsManage(props) {
         accessRights,
         onSubmitChangeProject,
         initialValuesChangeProject,
-
-
+        initialValuesPutTask,
+        onSubmitPutTask
     } = props
     if(!existsFlag)
         return <Redirect to='/projects/1'/>
@@ -61,7 +63,9 @@ export default function ProjectsManage(props) {
                     deleteAction={() => deleteAction(id)}
                     accessRights={accessRights}
                 />}/>
-                <Route path={`/single_project/:id?/tasks/`} render={() => <div></div>}/>
+                <Route path={`/single_project/:id?/tasks/`} render={() => <TasksContainer
+                    projectAccessRights={accessRights}
+                />}/>
                 <Route path={`/single_project/:id?/project_participants/:page?`} render={() => <ParticipantsContainer />}/>
                 <Route path={'/single_project/:id?/change_project'} render={
 
@@ -80,7 +84,12 @@ export default function ProjectsManage(props) {
                 <Route path={'/single_project/:id?/tasks/put_task'} render={
                     accessRights
 
-                        ? () => <div></div>
+                        ? () => <WorkWithTaskForm
+                            action={'Put'}
+                            initialValues={initialValuesPutTask}
+                            onSubmit={onSubmitPutTask}
+                            projectId={id}
+                            location={location}/>
 
                         : () => <Redirect to={'/profile'}/>
                 }/>
