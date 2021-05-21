@@ -23,6 +23,16 @@ const achieventsQueries = {
         `
     },
 
+    getAll(page, pageSize) {
+        return `
+                SELECT  * 
+                  FROM  achievements
+                ORDER BY    title
+                LIMIT   ${page * pageSize}, ${pageSize}
+                ;
+            `
+    },
+
     put(title, description, linkIMG) {
         return `
                 INSERT INTO achievements (

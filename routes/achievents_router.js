@@ -3,6 +3,7 @@ const {achieventsQueries} = require('./queries/queries')
 const multer = require('multer')
 const {resError, sqlSafeDecorator} = require('../utils/utls')
 const achieventsRouter = Router()
+const config = require('../config')
 
 achieventsRouter.get('/get_by_developer/:developer_id', (req, res) => {
     try {
@@ -15,15 +16,36 @@ achieventsRouter.get('/get_by_developer/:developer_id', (req, res) => {
             query,
             (err, result) => {
                 if(err)
-                    return resError('Can`t get achievents by developer id', res, err)
+                    return resError('Can`t get achievemets by developer id', res, err)
                 else {
                     return res.end(JSON.stringify(result))
                 }
             }
         )
     } catch (err) {
-        return resError('Can`t get achievents by developer id', res, err)
+        return resError('Can`t get achievemets by developer id', res, err)
     }
+})
+
+achieventsRouter.get('/get', (req, res) => {
+	try {
+		const page = +req.query.page
+        const pagSize = +req.query.pagSize
+        const query = sqlSafeDecorator(achieventsQueries.getAll, page, pagSize)()
+        req.connection.query(
+            query,
+            (err, result) => {
+                if(err)
+                    return resError('Can`t get achievemets', res, err)
+                else {
+                    return res.end(JSON.stringify(result))
+                }
+            }
+        )
+    } catch (err) {
+        return resError('Can`t get achievemets', res, err)
+    }
+
 })
 
 achieventsRouter.get('/delete/:achieventsId', (req, res) => {
@@ -34,17 +56,18 @@ achieventsRouter.get('/delete/:achieventsId', (req, res) => {
         req.connection.query(
             query,
             (err) => err
-                ? resError('Сouldn\'t delete achievent', res, err)
+                ? resError('Сouldn\'t delete achievemet', res, err)
                 : res.end()
         )
     } catch (err) {
-        return resError('Сouldn\'t delete achievent', res, err)
+        return resError('Сouldn\'t delete achievemet', res, err)
     }
 })
 
 achieventsRouter.post('/update/:achieventsId', (req, res) => {
     try {
         const achieventsId = +req.params.achieventsId
+        const imagePath = req.file.path.replace(/public./, '').replace(/\\/, '/').replace(/\\/, '/')
 
         req.connection.query(
                 sqlSafeDecorator(
@@ -52,15 +75,15 @@ achieventsRouter.post('/update/:achieventsId', (req, res) => {
                     achieventsId,
                     req.body.title,
                     req.body.description,
-                    req.body.linkIMG
+                    `http://localhost:${config.PORT}/` + imagePath
                 )(),
                 (err) => err
-                    ? resError('Failed to update achievent', res, err)
+                    ? resError('Failed to update achievemet', res, err)
                     : res.end()
             )
 
     } catch (err) {
-        return resError('Сouldn\'t update achievent', res, err)
+        return resError('Сouldn\'t update achievemet', res, err)
     }
 })
 
@@ -75,11 +98,11 @@ achieventsRouter.post('/put', (req, res) => {
                 developerData.linkIMG
             )(),
             (err) => err
-                ? resError('Failed to put achievent', res, err)
+                ? resError('Failed to put achievemet', res, err)
                 : res.end()
         )
     } catch (err) {
-        return resError('Failed to put achievent', res, err)
+        return resError('Failed to put achievemet', res, err)
     }
 })
 
