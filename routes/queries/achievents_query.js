@@ -11,14 +11,15 @@ const achieventsQueries = {
   
     getAchieventsByDeveloperId(developerId, page, pagSize) {
         return `
-            SELECT  *
-              FROM  achievements A
-             WHERE  (A.achievement_id in (
-                    SELECT  DA.achievement_id
-                      FROM  developer_achievements DA
-                     WHERE  developer_id = ${developerId}
-                )
-                LIMIT ${page * pageSize}, ${pageSize}
+            SELECT  A.achievement_id, A.achievement_title, A.descritpion, A.linkIMG
+            FROM achievements A
+            INNER JOIN developer_achievements DA
+            ON A.achievement_id = DA.achievement_id
+            INNER JOIN developers D
+            ON D.developer_id = DA.developer_id
+            WHERE D.developer_id=${developerId}
+            group by A.achievement_id
+            LIMIT ${page * pageSize}, ${pageSize}
             ;
         `
     },
@@ -27,7 +28,7 @@ const achieventsQueries = {
         return `
                 SELECT  * 
                   FROM  achievements
-                ORDER BY    title
+                ORDER BY  title
                 LIMIT   ${page * pageSize}, ${pageSize}
                 ;
             `

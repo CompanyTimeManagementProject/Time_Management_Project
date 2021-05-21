@@ -4,6 +4,17 @@ const multer = require('multer')
 const {resError, sqlSafeDecorator} = require('../utils/utls')
 const achieventsRouter = Router()
 const config = require('../config')
+const multer = require('multer')
+
+const storage = multer.diskStorage({
+    destination(req, file, cb) {
+        cb(null, './public/images/')
+    },
+    filename(req, file, cb) {
+        cb(null, file.originalname)
+    }
+})
+const upload = multer({storage})
 
 achieventsRouter.get('/get_by_developer/:developer_id', (req, res) => {
     try {
@@ -48,7 +59,7 @@ achieventsRouter.get('/get', (req, res) => {
 
 })
 
-achieventsRouter.get('/delete/:achieventsId', (req, res) => {
+achieventsRouter.get('/delete/:achievemetsId', (req, res) => {
     try {
         const achieventsId = +req.params.achieventsId
         const query = sqlSafeDecorator(achieventsQueries.delete, achieventsId)()
@@ -64,8 +75,9 @@ achieventsRouter.get('/delete/:achieventsId', (req, res) => {
     }
 })
 
-achieventsRouter.post('/update/:achieventsId', (req, res) => {
+achieventsRouter.post('/update/:achievemetsId', upload.single('image'), (req, res) => {
     try {
+        
         const achieventsId = +req.params.achieventsId
         const imagePath = req.file.path.replace(/public./, '').replace(/\\/, '/').replace(/\\/, '/')
 
@@ -87,15 +99,17 @@ achieventsRouter.post('/update/:achieventsId', (req, res) => {
     }
 })
 
-achieventsRouter.post('/put', (req, res) => {
+achieventsRouter.post('/put',  upload.single('image'), (req, res) => {
     try {
         const achieventData = req.body
+        const imagePath = req.file.path.replace(/public./, '').replace(/\\/, '/').replace(/\\/, '/')
+
         req.connection.query(
             sqlSafeDecorator(
                 achieventsQueries.put,
                 achieventData.title,
                 achieventData.description,
-                developerData.linkIMG
+                `http://localhost:${config.PORT}/` + imagePath
             )(),
             (err) => err
                 ? resError('Failed to put achievemet', res, err)
