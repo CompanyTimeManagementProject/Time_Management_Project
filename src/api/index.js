@@ -13,6 +13,34 @@ const titleItemsChange = (nameItem) => {
     return nameItem.slice(0, 1).toUpperCase() + nameItem.slice(1, nameItem.length).toLowerCase()
 }
 
+export const changingDatesAPI = {
+    getAll(taskId) {
+        const url = `changing_dates/get/${taskId}`
+        return request.get(url)
+    },
+
+    deleteChangingDate(changingDateId) {
+        const url = `changing_dates/delete/${changingDateId}`
+        return request.get(url)
+    },
+
+    //В записях нет права изменять даты, только причину (Например в случае опечатки)
+    updateChangingDate(changingDateId, cause) {
+        const url = `changing_dates/update/${changingDateId}`
+        return request.post(url, { cause })
+    },
+
+    putChangingDate(cause, deadlineBefore, deadlineAfter, taskId) {
+        const url = 'changing_dates/put'
+        return request.post(url, {
+            cause,
+            deadlineBefore,
+            deadlineAfter,
+            taskId
+        })
+    }
+}
+
 export const projectsAPI = {
     getProjects(page, pagSize, title) {
         const url = title

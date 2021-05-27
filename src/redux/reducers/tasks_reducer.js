@@ -1,4 +1,4 @@
-import {tasksAPI, changingDatesAPI} from '../../API/api'
+import {tasksAPI, changingDatesAPI} from '../../api/index'
 import {successResponseCondition} from '../utils/index'
 
 const SET_TASKS_LIST = 'SET_TASKS_LIST'

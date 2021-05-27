@@ -31,3 +31,15 @@ export const projectsListSelector = (state) => state.projects.projectsList
 export const projectsPaginationSizeSelector = (state) => state.projects.paginationSize
 
 export const totalProjectsCountSelector = (state) => state.projects.totalProjectsCount
+
+
+//Селекторы задач
+export const tasksListSelector = (state) => state.tasks.tasksList
+
+export const actualTaskSelector = (state) => state.tasks.actualTask
+
+export const tasksPaginationSizeSelector = (state) => state.tasks.paginationSize
+
+export const totalTasksCountSelector = (state) => state.tasks.totalTasksCount
+
+export const changingDatesListSelector = (state) => state.tasks.changingDatesList
