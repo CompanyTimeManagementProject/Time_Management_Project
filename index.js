@@ -9,6 +9,7 @@ const projectsRouter = require('./routes/projects_router')
 const tasksRouter = require('./routes/tasks_router')
 const changingDatesRouter = require('./routes/changing_dates_router')
 const notificationsRouter = require('./routes/notification_router')
+const achieventsRouter = require('./routes/achievents_router')
 const path = require('path')
 const {notificationsTimer} = require('./utils/utls')
 
@@ -38,6 +39,7 @@ app.use('/projects', projectsRouter)
 app.use('/tasks', tasksRouter)
 app.use('/changing_dates', changingDatesRouter)
 app.use('/notifications', notificationsRouter)
+app.use('/achievents', achieventsRouter)
 
 app.listen(config.PORT, () => {
     connection.connect(err => {
