@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
+const path = require('path')
 const mysql = require('mysql2')
 const config = require('./config')
 const vars = require('./middlewares/vars')
@@ -44,6 +45,14 @@ app.use('/changing_dates', changingDatesRouter)
 app.use('/notifications', notificationsRouter)
 app.use('/achievements', achievementsRouter)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+
+// declare react files in build as static
+app.use(express.static(path.join(__dirname, "build")))
+
+// serve index.html from the build folder
+app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"))
+})
 
 app.listen(config.PORT, () => {
     connection.connect(err => {
