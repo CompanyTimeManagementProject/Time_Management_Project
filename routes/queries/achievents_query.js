@@ -6,10 +6,10 @@
     * **********************
  */
 
-const achieventsQueries = {
+const achievementsQueries = {
 
   
-    getAchieventsByDeveloperId(developerId, page, pagSize) {
+    getAchievementsByDeveloperId(developerId, page, pagSize) {
         return `
             SELECT  A.achievement_id, A.achievement_title, A.descritpion, A.linkIMG
             FROM achievements A
@@ -70,4 +70,4 @@ const achieventsQueries = {
 
 }
 
-module.exports = achieventsQueries
+module.exports = achievementsQueries
