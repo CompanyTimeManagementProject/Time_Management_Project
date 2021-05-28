@@ -1,6 +1,6 @@
 import axios from 'axios'
 import cryptoJS from 'crypto-js'
-const request = axios.create({ baseURL: 'http://localhost:9000/' })
+const request = axios.create({ baseURL: 'https://itimecompany.herokuapp.com/' })
 
 const secretKey = 'I want to live in alaska'
 const keyForPasswords = 'Hello from Australia'
