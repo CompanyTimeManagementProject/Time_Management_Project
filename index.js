@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const app = express()
+const path = require('path')
 const mysql = require('mysql2')
 const config = require('./config')
 const vars = require('./middlewares/vars')
@@ -9,8 +9,11 @@ const projectsRouter = require('./routes/projects_router')
 const tasksRouter = require('./routes/tasks_router')
 const changingDatesRouter = require('./routes/changing_dates_router')
 const notificationsRouter = require('./routes/notification_router')
-const achieventsRouter = require('./routes/achievents_router')
-const path = require('path')
+const achievementsRouter = require('./routes/achievents_router')
+const swaggerUi = require('swagger-ui-express')
+const swaggerDocument = require('./swagger.json')
+const app = express()
+
 const {notificationsTimer} = require('./utils/utls')
 
 const connection = mysql.createConnection({
@@ -39,7 +42,9 @@ app.use('/projects', projectsRouter)
 app.use('/tasks', tasksRouter)
 app.use('/changing_dates', changingDatesRouter)
 app.use('/notifications', notificationsRouter)
-app.use('/achievents', achieventsRouter)
+app.use('/achievements', achievementsRouter)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+
 
 app.listen(config.PORT, () => {
     connection.connect(err => {
