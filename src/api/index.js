@@ -396,15 +396,35 @@ export const achAPI = {
         return request.get(url)
     },
 
-    addAch() {
-
+    addAch(title, description) {
+        const url = `achievements/put`
+        return request.post(url, {
+            title,
+            description
+        })
     },
 
-    deleteAch() {
-
+    deleteAch(achId) {
+        const url = `achievements/delete/${achId}`
+        return request.get(url)
     },
 
-    updateAch() {
+    updateAch(achId, title, description) {
+        const url = `achievements/update/${achId}`
+        return request.post(url, {
+            title,
+            description
+        })
+    },
 
+    updateImg(achId, img) {
+        const fd = new FormData()
+        fd.append('image', img, `${Date.now()}_${img.name}`)
+        let url = `http://localhost:9000/achievements/change_img/${achId}`
+
+        return fetch(url, {
+            method: 'POST',
+            body: fd
+        })
     }
 }

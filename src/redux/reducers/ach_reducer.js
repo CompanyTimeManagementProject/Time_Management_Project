@@ -55,3 +55,47 @@ export function getAchByDeveloperFromServerAndSet(developerId) {
         }
     }
 }
+
+export function addAchOnServ(title, description) {
+    return async (dispatch, getState) => {
+        const response = await achAPI.addAch(title, description)
+        if(successResponseCondition(response.status, response.data.errMessage)) {
+            return Promise.resolve()
+        } else {
+            return Promise.reject(new Error(response.data.errMessage))
+        }
+    }
+}
+
+export function updateAchOnServ(achId, title, description) {
+    return async (dispatch, getState) => {
+        const response = await achAPI.updateAch(achId, title, description)
+        if(successResponseCondition(response.status, response.data.errMessage)) {
+            return Promise.resolve()
+        } else {
+            return Promise.reject(new Error(response.data.errMessage))
+        }
+    }
+}
+
+export function deleteAchOnServ(achId) {
+    return async (dispatch, getState) => {
+        const response = await achAPI.deleteAch(achId)
+        if(successResponseCondition(response.status, response.data.errMessage)) {
+            return Promise.resolve()
+        } else {
+            return Promise.reject(new Error(response.data.errMessage))
+        }
+    }
+}
+
+export function updateImgOnServ(achId, img) {
+    return async (dispatch, getState) => {
+        const response = await achAPI.updateImg(achId, img)
+        if(successResponseCondition(response.status, response.data?.errMessage)) {
+            return Promise.resolve()
+        } else {
+            return Promise.reject(new Error(response.data.errMessage))
+        }
+    }
+}

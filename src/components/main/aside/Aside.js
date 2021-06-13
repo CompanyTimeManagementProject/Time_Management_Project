@@ -34,6 +34,14 @@ function Aside({accessRight, location}) {
                 >
                     <li>Notifications</li>
                 </NavLink>
+                {
+                    accessRight
+                        ? <NavLink
+                            to='/achievements'
+                            className={location.pathname.includes('achievements') ? 'active' : ''}
+                        ><li>Achievements</li></NavLink>
+                        : null
+                }
             </ul>
         </aside>
     )
