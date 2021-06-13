@@ -37,6 +37,23 @@ achievementsRouter.get('/get_by_developer/:developer_id', (req, res) => {
     }
 })
 
+achievementsRouter.post('/change_img/:id', upload.single('image'), (req, res) => {
+    try {
+        const id = +req.params.id
+        const imagePath = req.file.path.replace(/public./, '').replace(/\\/, '/').replace(/\\/, '/')
+
+        const query = sqlSafeDecorator(achievementsQueries.updateLinkImage, id, `http://localhost:${config.PORT}/` + imagePath)()
+
+        req.connection.query(query, err => err
+            ? resError('Failed to update avatar image', res, err)
+            : res.end()
+        )
+
+    } catch (err) {
+        return resError('Failed to update avatar image', res, err)
+    }
+})
+
 achievementsRouter.get('/get', (req, res) => {
 	try {
 		const page = +req.query.page
@@ -74,19 +91,18 @@ achievementsRouter.get('/delete/:achievementsId', (req, res) => {
     }
 })
 
-achievementsRouter.post('/update/:achievementsId', upload.single('image'), (req, res) => {
+//achievementsRouter.post('/update/:')
+
+achievementsRouter.post('/update/:achievementsId', (req, res) => {
     try {
-        
-        const achievementsId = +req.params.achieventsId
-        const imagePath = req.file.path.replace(/public./, '').replace(/\\/, '/').replace(/\\/, '/')
+        const achievementsId = +req.params.achievementsId
 
         req.connection.query(
                 sqlSafeDecorator(
                     achievementsQueries.update,
                     achievementsId,
                     req.body.title,
-                    req.body.description,
-                    `http://localhost:${config.PORT}/` + imagePath
+                    req.body.description
                 )(),
                 (err) => err
                     ? resError('Failed to update achievement', res, err)
@@ -98,17 +114,16 @@ achievementsRouter.post('/update/:achievementsId', upload.single('image'), (req,
     }
 })
 
-achievementsRouter.post('/put',  upload.single('image'), (req, res) => {
+achievementsRouter.post('/put', (req, res) => {
     try {
         const achievementData = req.body
-        const imagePath = req.file.path.replace(/public./, '').replace(/\\/, '/').replace(/\\/, '/')
 
         req.connection.query(
             sqlSafeDecorator(
                 achievementsQueries.put,
                 achievementData.title,
                 achievementData.description,
-                `http://localhost:${config.PORT}/` + imagePath
+                "null"
             )(),
             (err) => err
                 ? resError('Failed to put achievement', res, err)

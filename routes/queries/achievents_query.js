@@ -27,7 +27,7 @@ const achievementsQueries = {
         return `
                 SELECT  * 
                   FROM  achievements
-                ORDER BY  title
+                ORDER BY  achievement_title
                 LIMIT   ${page * pageSize}, ${pageSize}
                 ;
             `
@@ -49,16 +49,25 @@ const achievementsQueries = {
             `
     },
 
-    update(achievementId, title, description, linkIMG) {
+    update(achievementId, title, description) {
         return `
                 UPDATE achievements
                     SET achievement_title = ${title},
-                        descritpion = ${description},
-                        linkIMG = ${linkIMG},
+                        descritpion = ${description}
                     WHERE achievement_id = ${achievementId}
                 ;
             `
     },
+
+    updateLinkImage(achievementId, linkImage) {
+        return `
+                UPDATE achievements
+                    SET  linkIMG = ${linkImage}
+                    WHERE achievement_id = ${achievementId}
+                ;
+            `
+    },
+
     delete(achievementId) {
         return `
                 DELETE FROM achievements
