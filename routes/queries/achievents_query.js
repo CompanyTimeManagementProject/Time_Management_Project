@@ -18,7 +18,7 @@ const achievementsQueries = {
             INNER JOIN developers D
             ON D.developer_id = DA.developer_id
             WHERE D.developer_id=${developerId}
-            LIMIT ${page * pageSize}, ${pageSize}
+            LIMIT ${page * pagSize}, ${pagSize}
             ;
         `
     },
