@@ -312,6 +312,13 @@ export const notificationsAPI = {
 }
 
 export const tasksAPI = {
+    getTasksByDeveloperId(developerId, isAdmin) {
+        const url = isAdmin
+            ? `tasks/get_by_developer/${developerId}`
+            : `tasks/get_all`
+        return request.get(url)
+    },
+
     getTasks(projectId, title, page, pagSize) {
         const url = title
             ? `tasks/get/${projectId}?title=${title}&page=${page - 1}&pagSize=${pagSize}`

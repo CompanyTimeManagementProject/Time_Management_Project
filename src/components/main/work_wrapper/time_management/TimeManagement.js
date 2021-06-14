@@ -4,7 +4,7 @@ import 'react-calendar/dist/Calendar.css'
 import * as style from './time_management.module.css'
 import CalendarActionsContainer from "./calendar_actions/CalendarActionsContainer";
 
-export default function TimeManagement({actualDate, setActualDate, onClickOnDate}) {
+export default function TimeManagement({actualDate, setActualDate, onClickOnDate, wtDeveloperId}) {
 
 
     return <div className={style.tm_main_wrapper}>
@@ -18,6 +18,7 @@ export default function TimeManagement({actualDate, setActualDate, onClickOnDate
         </div>
         <CalendarActionsContainer
             actualDate={actualDate}
+            wtDeveloperId={wtDeveloperId}
         />
     </div>
 }

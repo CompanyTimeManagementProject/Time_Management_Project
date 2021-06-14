@@ -4,11 +4,12 @@ import CalendarActions from './CalendarActions'
 import {workingTimeListSelector} from "../../../../../redux/selectors";
 
 
-function CalendarActionsContainer({wtlist, actualDate}) {
+function CalendarActionsContainer({wtlist, actualDate, wtDeveloperId}) {
 
     return <CalendarActions
         wtlist={wtlist}
         actualDate={actualDate}
+        wtDeveloperId={wtDeveloperId}
     />
 }
 

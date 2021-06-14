@@ -25,6 +25,7 @@ function TimeManagementContainer({
         actualDate={actualDate}
         setActualDate={setActualDate}
         onClickOnDate={onClickOnDate}
+        wtDeveloperId={wtDeveloperId}
     />
 }
 

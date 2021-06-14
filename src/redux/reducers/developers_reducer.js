@@ -96,6 +96,17 @@ export function deleteDeveloper(id) {
     }
 }
 
+export function getSingleDeveloperById(id) {
+    return async (dispatch) => {
+        const response = await developersAPI.getById(id)
+        if(successResponseCondition(response.status, response.data.errMessage)) {
+            return response.data
+        } else {
+            return Promise.reject(new Error(response.data.errMessage))
+        }
+    }
+}
+
 export function putDeveloper(developerData) {
     return async (dispatch) => {
         const response = await developersAPI.putDeveloper(developerData)
