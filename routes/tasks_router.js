@@ -252,4 +252,37 @@ tasksRouter.post('/add_developer', (req, res) => {
 })
 
 
+tasksRouter.get('/get_by_developer/:developerId', (req, res) => {
+    try {
+        const developerId = +req.params.developerId
+        let query = sqlSafeDecorator(tasksQueries.getAllDevelopersTasks, developerId)()
+
+        req.connection.query(
+            query,
+            (err, result) => err
+                ? resError('Сouldn\'t get tasks', res, err)
+                : res.end(JSON.stringify(result))
+        )
+
+    } catch (err) {
+        return resError('Сouldn\'t get tasks', res, err)
+    }
+})
+
+tasksRouter.get('/get_all', (req, res) => {
+    try {
+        let query = sqlSafeDecorator(tasksQueries.getAll)()
+
+        req.connection.query(
+            query,
+            (err, result) => err
+                ? resError('Сouldn\'t get tasks', res, err)
+                : res.end(JSON.stringify(result))
+        )
+
+    } catch (err) {
+        return resError('Сouldn\'t get tasks', res, err)
+    }
+})
+
 module.exports = tasksRouter
