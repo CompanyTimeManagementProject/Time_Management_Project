@@ -5,6 +5,10 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+.react-calendar__navigation button {
+    font-size: 30px;
+}
+
 html {
     height: 85%;
 }

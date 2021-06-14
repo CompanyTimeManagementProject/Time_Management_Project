@@ -46,3 +46,9 @@ export const changingDatesListSelector = (state) => state.tasks.changingDatesLis
 
 //Селекторы ачивок
 export const achListSelector = (state) => state.ach.achList
+
+
+//Селекторы рабочего времени
+export const workingTimeListSelector = (state) => {
+    return state.wt.workingTimeList
+}

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import cryptoJS from 'crypto-js'
+import {dateToDateString} from "../components/utils/formats";
 const request = axios.create({ baseURL: 'http://localhost:9000/' })
 
 const secretKey = 'I want to live in alaska'
@@ -11,6 +12,14 @@ const titleItemsChange = (nameItem) => {
     if(!nameItem)
         return ''
     return nameItem.slice(0, 1).toUpperCase() + nameItem.slice(1, nameItem.length).toLowerCase()
+}
+
+export const workingTimeAPI = {
+    getByDeveloperIdAndDates(developerId, date) {
+        const fullFormatedDate = dateToDateString(date)
+        const url = `working_time/get/${developerId}?date=${fullFormatedDate}`
+        return request.get(url)
+    }
 }
 
 export const changingDatesAPI = {

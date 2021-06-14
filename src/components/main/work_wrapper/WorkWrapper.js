@@ -9,6 +9,7 @@ import AllNotificationsContainer from './notifications/AllNotificationsContainer
 import * as style from './work_wrapper.module.css'
 import ProjectsManageSide from './projects/projects_manage/ProjectsManageSide'
 import AchievementsContainer from './achievements/AchievementsContainer'
+import TimeManagementContainer from "./time_management/TimeManagementContainer";
 
 
 export default function WorkWrapper(props) {
@@ -42,6 +43,8 @@ export default function WorkWrapper(props) {
 
                     <Route path='/projects/:page?' render={() => <Projects />}/>
                     <Route path='/developers/:page?' render={() => <DevelopersContainer
+                    />}/>
+                    <Route path='/time_management' render={() => <TimeManagementContainer
 
                     />}/>
 
