@@ -426,18 +426,23 @@ developerRouter.post('/get_auth', (req, res) => {
         req.connection.query(
             query,
             (err, result) => {
-                if (err)
+                try {
+                    if (err)
+                        return resError('Failed authorisation', res, err)
+                    else {
+                        if (result.length > 0) {
+                            if (password === decodeData(result[0].developer_password, keyForPasswords)) {
+                                res.end(JSON.stringify(result))
+                            } else {
+                                return resError('Неверное имя пользователя или пароль', res, err)
+                            }
+                        } else
+                            return res.end(JSON.stringify([]))
+                    }
+                } catch (err) {
                     return resError('Failed authorisation', res, err)
-                else {
-                    if (result.length > 0) {
-                        if (password === decodeData(result[0].developer_password, keyForPasswords)) {
-                            res.end(JSON.stringify(result))
-                        } else {
-                            return resError('Неверное имя пользователя или пароль', res, err)
-                        }
-                    } else
-                        return res.end(JSON.stringify([]))
                 }
+
             }
         )
 
