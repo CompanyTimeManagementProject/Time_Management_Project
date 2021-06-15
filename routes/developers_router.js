@@ -451,6 +451,32 @@ developerRouter.post('/get_auth', (req, res) => {
     }
 })
 
+developerRouter.get('/get_subordinates/:developerId/:isAdmin', (req, res) => {
+    try {
+        const developerId = +req.params.developerId
+        const isAdmin = req.params.isAdmin === 'true'
+
+        console.log(developerId)
+        console.log(isAdmin)
+
+        const query = sqlSafeDecorator(
+            developersQueries.getSubordinate,
+            developerId,
+            isAdmin
+        )()
+
+        req.connection.query(
+            query,
+            (err, result) => err
+                ? resError('Failed to get subordinates', res, err)
+                : res.end(JSON.stringify(result))
+        )
+
+    } catch (err) {
+        return resError('Сouldn\'t get subordinates', res, err)
+    }
+})
+
 
 
 module.exports = developerRouter
