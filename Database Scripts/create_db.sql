@@ -106,6 +106,8 @@ create table working_time
 (
 	working_time_id int primary key auto_increment,
     start_time timestamp not null,
+    working_time_comment varchar(500),
+    working_time_status int default 0 not null,
     end_time timestamp,
     developer_id int not null,
 	task_id int not null,	

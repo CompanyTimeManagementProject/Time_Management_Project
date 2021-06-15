@@ -1853,10 +1853,9 @@ CREATE
 			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT  = 'MyTriggerError: Trying to insert invalid changing date';
 		END IF;
     END$$
-DELIMITER ;
-
-
-CREATE
+    
+    
+    CREATE
     TRIGGER `ach_trigger` BEFORE insert 
     ON working_time
     FOR EACH ROW BEGIN
@@ -1913,3 +1912,6 @@ CREATE
                 ) values (new.developer_id, 3);							
 		end if;
     END$$
+DELIMITER ;
+
+
