@@ -17,7 +17,9 @@
 }
 
 .wt_container {
-
+    border: 2px solid #1A4D59;
+    margin-bottom: 20px;
+    padding: 20px;
 }
 
 .time_container {
@@ -44,10 +46,7 @@
 }
 
 .wt_single_item_wrapper {
-    padding: 20px;
-    border: 2px solid #1A4D59;
-    background-color: #C70449;
-    margin-bottom: 20px;
+
 }
 
 

@@ -1,7 +1,8 @@
 import axios from 'axios'
 import cryptoJS from 'crypto-js'
 import {dateToDateString} from "../components/utils/formats";
-const request = axios.create({ baseURL: 'http://localhost:9000/' })
+
+const request = axios.create({baseURL: 'http://localhost:9000/'})
 
 const secretKey = 'I want to live in alaska'
 const keyForPasswords = 'Hello from Australia'
@@ -9,7 +10,7 @@ const keyForPasswords = 'Hello from Australia'
 
 //Функция, изменяющая имя пользователя по регистру
 const titleItemsChange = (nameItem) => {
-    if(!nameItem)
+    if (!nameItem)
         return ''
     return nameItem.slice(0, 1).toUpperCase() + nameItem.slice(1, nameItem.length).toLowerCase()
 }
@@ -18,6 +19,34 @@ export const workingTimeAPI = {
     getByDeveloperIdAndDates(developerId, date) {
         const fullFormatedDate = dateToDateString(date)
         const url = `working_time/get/${developerId}?date=${fullFormatedDate}`
+        return request.get(url)
+    },
+
+    addWt(developerId, taskId, startTime, endTime, wtComment) {
+        const url = `working_time/add`
+        return request.post(url, {
+            developerId,
+            taskId,
+            startTime,
+            endTime,
+            wtComment
+        })
+    },
+
+    deleteWt(wtId) {
+        const url = `working_time/delete_wt/${wtId}`
+        return request.get(url)
+    },
+
+    updateStatus(wtId, status) {
+        const url = `working_time/update_status/${wtId}`
+        return request.post(url, {
+            status
+        })
+    },
+
+    fillCalendar(developerId, month, year) {
+        const url = `working_time/get_for_calendar/${developerId}/${month}/${year}`
         return request.get(url)
     }
 }
@@ -36,7 +65,7 @@ export const changingDatesAPI = {
     //В записях нет права изменять даты, только причину (Например в случае опечатки)
     updateChangingDate(changingDateId, cause) {
         const url = `changing_dates/update/${changingDateId}`
-        return request.post(url, { cause })
+        return request.post(url, {cause})
     },
 
     putChangingDate(cause, deadlineBefore, deadlineAfter, taskId) {
@@ -92,7 +121,7 @@ export const projectsAPI = {
     },
 
     deleteProject(id) {
-        const url  = `projects/delete/${id}`
+        const url = `projects/delete/${id}`
         return request.get(url)
     },
 
@@ -109,6 +138,11 @@ export const projectsAPI = {
 
 
 export const developersAPI = {
+    getSubordinates(developerId, isAdmin) {
+        const url = `developers/get_subordinates/${developerId}/${isAdmin}`
+        return request.get(url)
+    },
+
     getAuth(email, pass) {
         const hashPass = encodeURIComponent(cryptoJS.AES.encrypt(pass, keyForPasswords).toString())
         const url = `developers/get_auth`
@@ -307,15 +341,15 @@ export const notificationsAPI = {
 
     updateNotification(notificationId, content) {
         const url = `notifications/update_notification/${notificationId}`
-        return request.post(url, { content })
+        return request.post(url, {content})
     }
 }
 
 export const tasksAPI = {
     getTasksByDeveloperId(developerId, isAdmin) {
         const url = isAdmin
-            ? `tasks/get_by_developer/${developerId}`
-            : `tasks/get_all`
+            ? `tasks/get_all`
+            : `tasks/get_by_developer/${developerId}`
         return request.get(url)
     },
 

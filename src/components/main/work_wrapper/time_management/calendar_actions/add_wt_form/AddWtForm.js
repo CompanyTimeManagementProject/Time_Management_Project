@@ -53,7 +53,9 @@ export default function AddWtForm({initialValues, validationSchema, onSubmit, ta
             style={{ display: 'block' }}
             value={formik.values.tasks}
             onChange={formik.handleChange}
+            placeholder={'Enter task'}
         >
+            <option value="" selected disabled>Please select an task...</option>
             {
                 tasks.map(t => <option value={t.task_id} label={t.task_title} key={t.task_id}/>)
             }

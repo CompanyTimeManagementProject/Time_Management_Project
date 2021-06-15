@@ -37,3 +37,47 @@ export function getWorkingTimeFromServByDeveloperIdAndDate(developerId, date) {
         }
     }
 }
+
+export function deleteWtOnServ(wtId) {
+    return async dispatch => {
+        const response = await workingTimeAPI.deleteWt(wtId)
+        if(successResponseCondition(response.status, response.data.errMessage)) {
+            return Promise.resolve()
+        } else {
+            return Promise.reject(new Error(response.data.errMessage))
+        }
+    }
+}
+
+export function updateStatusOnServ(wtId, status) {
+    return async dispatch => {
+        const response = await workingTimeAPI.updateStatus(wtId, status)
+        if(successResponseCondition(response.status, response.data.errMessage)) {
+            return Promise.resolve()
+        } else {
+            return Promise.reject(new Error(response.data.errMessage))
+        }
+    }
+}
+
+export function addWtOnServ(developerId, taskId, startTime, endTime, comment) {
+    return async dispatch => {
+        const response = await workingTimeAPI.addWt(developerId, taskId, startTime, endTime, comment)
+        if(successResponseCondition(response.status, response.data.errMessage)) {
+            return Promise.resolve()
+        } else {
+            return Promise.reject(new Error(response.data.errMessage))
+        }
+    }
+}
+
+export function getWtFromServFromCalendar(developerId, month, year) {
+    return async dispatch => {
+        const response = await workingTimeAPI.fillCalendar(developerId, month, year)
+        if(successResponseCondition(response.status, response.data.errMessage)) {
+            return response.data
+        } else {
+            return Promise.reject(new Error(response.data.errMessage))
+        }
+    }
+}

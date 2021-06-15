@@ -172,3 +172,14 @@ export function getCountByProject(projectId, email, surname) {
         }
     }
 }
+
+export function getSubordinatesFromServ(developerId, isAdmin) {
+    return async (dispatch) => {
+        const response = await developersAPI.getSubordinates(developerId, isAdmin)
+        if(successResponseCondition(response.status, response.data.errMessage)) {
+            return response.data
+        } else {
+            return Promise.reject(new Error(response.data.errMessage))
+        }
+    }
+}

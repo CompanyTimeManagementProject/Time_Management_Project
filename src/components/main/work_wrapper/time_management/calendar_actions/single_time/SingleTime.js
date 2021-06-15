@@ -3,9 +3,15 @@ import * as style from '../../time_management.module.css'
 import {timeStringFormat} from "../../../../../utils/formats";
 
 
-export default function SingleTime({startTime, endTime, comment, taskTitle}) {
+export default function SingleTime({startTime, endTime, comment, taskTitle, status, onDelete, onUpdateStatus, isSameDeveloper}) {
 
-    return <div className={style.wt_container}>
+    let color = status === 1
+        ? 'olivedrab'
+        : status === 2
+            ? 'coral'
+            : 'goldenrod'
+
+    return <div className={style.wt_container} style={{backgroundColor: color}}>
             <div className={style.time_container}>
                 <span>{timeStringFormat(startTime)} - {timeStringFormat(endTime)}</span>
             </div>
@@ -15,16 +21,20 @@ export default function SingleTime({startTime, endTime, comment, taskTitle}) {
             <p className={style.comment}>
                 Task: {taskTitle}
             </p>
-            <button className='primary-btn'>
+            <button className='primary-btn' onClick={onDelete}>
                 Delete
             </button>
             <div className={style.wt_item_container}>
-                <button className='primary-btn'>
-                    Confirm
-                </button>
-                <button className='primary-btn'>
-                    Reject
-                </button>
+                {
+                    !isSameDeveloper() && (status === 0 || status === 2) && <button className='primary-btn' onClick={() => onUpdateStatus(1)}>
+                        Confirm
+                    </button>
+                }
+                {
+                    !isSameDeveloper() && (status === 0 || status === 1) && <button className='primary-btn' onClick={() => onUpdateStatus(2)}>
+                        Reject
+                    </button>
+                }
             </div>
         </div>
 }

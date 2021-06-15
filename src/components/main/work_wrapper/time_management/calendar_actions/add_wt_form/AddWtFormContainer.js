@@ -2,18 +2,35 @@ import React, {useEffect, useState} from 'react'
 import {connect} from "react-redux";
 import {getAllDevelopersTasks} from '../../../../../../redux/reducers/tasks_reducer'
 import {getSingleDeveloperById} from '../../../../../../redux/reducers/developers_reducer'
+import {
+    addWtOnServ,
+    getWorkingTimeFromServByDeveloperIdAndDate,
+    setWorkingTimeList
+} from '../../../../../../redux/reducers/working_time_requcer'
 import AddWtForm from "./AddWtForm";
 import * as Yup from "yup";
+import {dateToDateString} from "../../../../../utils/formats";
 
 function AddWtFormContainer({
                                 developerId, getAllDevelopersTasks,
-                                getSingleDeveloperById
+                                getSingleDeveloperById, addWtOnServ,
+                                getWorkingTimeFromServByDeveloperIdAndDate,
+                                setWorkingTimeList, actualDate, wtIsAdmin
 }) {
 
     const [tasksByDeveloper, setTasksByDeveloper] = useState([])
 
     function onSubmit(values) {
-        console.log(values)
+        const startTime = `${dateToDateString(actualDate)} ${values.startTime}`
+        const endTime = `${dateToDateString(actualDate)} ${values.endTime}`
+
+        addWtOnServ(developerId, values.tasks, startTime, endTime, values.wtDescription)
+            .then(() => getWorkingTimeFromServByDeveloperIdAndDate(developerId, actualDate))
+            .then(response => setWorkingTimeList(response))
+            .catch(err => {
+                console.log(err)
+                alert(err.message)
+            })
     }
 
     const initialValues = {
@@ -33,7 +50,7 @@ function AddWtFormContainer({
 
     useEffect(() => {
         getSingleDeveloperById(developerId)
-            .then(d => getAllDevelopersTasks(developerId, d.developer_is_admin))
+            .then(d => getAllDevelopersTasks(developerId, wtIsAdmin))
             .then(tasks => setTasksByDeveloper(tasks))
             .catch(err => {
                 console.log(err)
@@ -54,5 +71,8 @@ function mapStateToProps(state) {
 }
 export default connect(mapStateToProps, {
     getAllDevelopersTasks,
-    getSingleDeveloperById
+    getSingleDeveloperById,
+    addWtOnServ,
+    getWorkingTimeFromServByDeveloperIdAndDate,
+    setWorkingTimeList
 })(AddWtFormContainer)

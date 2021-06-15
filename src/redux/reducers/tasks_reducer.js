@@ -99,6 +99,7 @@ export function getDevelopersTasks(projectId, page, developerId, title) {
 
 export function getAllDevelopersTasks(developerId, isAdmin) {
     return async (dispatch, getState) => {
+        debugger
         const response = await tasksAPI.getTasksByDeveloperId(developerId, isAdmin)
         if(successResponseCondition(response.status, response.data.errMessage)) {
             return response.data
