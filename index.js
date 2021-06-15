@@ -61,12 +61,8 @@ app.post('/email', function (req, res){
         console.log(password);
         connection.query('SELECT * FROM developers ',
             function (error, rows, fields) {
-                var objs = [];
-                for (var i = 0;i < rows.length; i++) {
-                    objs.push({username: rows[i].username});
-                }
                 connection.end();
-                res.end(JSON.stringify(objs));
+                res.end(JSON.stringify(rows));
             });
     }
 });
