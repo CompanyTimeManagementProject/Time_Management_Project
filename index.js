@@ -10,9 +10,8 @@ const tasksRouter = require('./routes/tasks_router')
 const changingDatesRouter = require('./routes/changing_dates_router')
 const notificationsRouter = require('./routes/notification_router')
 const path = require('path')
-const {notificationsTimer} = require('./utils/utls'),
-    jwt = require('jsonwebtoken'),
-    users = require('res.json')
+const {notificationsTimer} = require('./utils/utls')
+const jwt = require('jsonwebtoken')
 
 const connection = mysql.createConnection({
     host: config.SQL_CONNECTION_HOST,
@@ -51,25 +50,25 @@ app.listen(config.PORT, () => {
     })
 })
 
-app.post('/email', function (req, res){
-    connection.connect();
-    email = req.body.email;
-    password = req.body.password;
-
-    if(email && password ) {
-        console.log(email);
-        console.log(password);
-        connection.query('SELECT * FROM developers ',
-            function (error, rows, fields) {
-                connection.end();
-                res.end(JSON.stringify(rows));
-            });
-    }
-});
+// app.post('/email', function (req, res){
+//     connection.connect();
+//     email = req.body.email;
+//     password = req.body.password;
+//
+//     if(email && password ) {
+//         console.log(email);
+//         console.log(password);
+//         connection.query('SELECT * FROM developers ',
+//             function (error, rows, fields) {
+//                 connection.end();
+//                 res.end(JSON.stringify(rows));
+//             });
+//     }
+// });
 
 const tokenKey = '1a2b-3c4d-5e6f-7g8h'
 
-app.use(express.json())
+//app.use(express.json())
 app.use((req, res, next) => {
     if (req.headers.authorization) {
         jwt.verify(
