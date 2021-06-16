@@ -1,19 +1,19 @@
 version: "1.0.0"
 services:
-  front-main:
-    build: ./services/api
+  back-main:
+    build: ./services/back-main
     ports:
       - "8080:8080"
     depends_on:
       - db
     container_name: blog-api
-  client:
-    build: ./services/client
+  front-main:
+    build: ./services/front-main
     ports:
       - "80:80"
     container_name: blog-client
   db:
-    image: mongo
+    image: mysql
     ports:
-      - "27017:27017"
+      - "9000:9000"
     container_name: blog-db
