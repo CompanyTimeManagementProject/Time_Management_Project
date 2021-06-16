@@ -7,7 +7,7 @@
  */
 
 const tasksQueries = {
-    getAll(projectId, page, pageSize) {
+    getAllByProjectId(projectId, page, pageSize) {
         return `
                 SELECT  *
                   FROM  tasks

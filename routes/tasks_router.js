@@ -11,14 +11,15 @@ tasksRouter.get('/get/:project_id', (req, res) => {
         const developerId = +req.query.developerId
         const page = +req.query.page
         const pagSize = +req.query.pagSize
-
         let query = title
             ? developerId
                 ? sqlSafeDecorator(tasksQueries.getDevelopersTasksByTitle, developerId, projectId, title + '%', page, pagSize)()
                 : sqlSafeDecorator(tasksQueries.getByTitle, projectId, title + '%', page, pagSize)()
             : developerId
                 ? sqlSafeDecorator(tasksQueries.getDevelopersTasks, developerId, projectId, page, pagSize)()
-                : sqlSafeDecorator(tasksQueries.getAll, projectId, page, pagSize)()
+                : sqlSafeDecorator(tasksQueries.getAllByProjectId, projectId, page, pagSize)()
+
+        console.log(query)
 
 
         req.connection.query(
@@ -271,7 +272,7 @@ tasksRouter.get('/get_by_developer/:developerId', (req, res) => {
 
 tasksRouter.get('/get_all', (req, res) => {
     try {
-        let query = sqlSafeDecorator(tasksQueries.getAll)()
+        let query = sqlSafeDecorator(tasksQueries.getAllByProjectId)()
 
         req.connection.query(
             query,
