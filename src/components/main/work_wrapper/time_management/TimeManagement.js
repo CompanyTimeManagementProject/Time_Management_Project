@@ -29,6 +29,7 @@ export default function TimeManagement({
                 onClickDay={onClickOnDate}
             />
             <select
+                className={style.developer_select}
                 name="tasks"
                 style={{display: 'block'}}
                 value={wtDeveloperId}

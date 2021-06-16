@@ -5,6 +5,7 @@ import WorkWithTaskForm from '../../work_with_task_form/WorkWithTaskForm'
 import React from 'react'
 import * as style from './tasks_manage.module.css'
 import NotificationsContainer from '../../../../notifications/AllNotificationsContainer'
+import TaskInfo from "./task_info/TaskInfo";
 
 
 export default function TasksManage(props) {
@@ -16,7 +17,15 @@ export default function TasksManage(props) {
         accessRights,
         initialValuesChangeTask,
         onSubmitChangeTask,
-        location
+        location,
+        changingDatesList,
+        deleteChangingDate,
+        getChangingDates,
+        putChangingDate,
+        updateChangingDate,
+        deleteTaskAction,
+        getSingleTask,
+        setLoading
     } = props
 
     if(!existsFlag)
@@ -64,12 +73,25 @@ export default function TasksManage(props) {
             <div className='projects_manage_work_space'>
                 <Route
                     path={`/single_project/:id?/tasks/single_task/:task_id?/task_info`}
-                    render={() => <div></div>}
+                    render={() => <TaskInfo
+                        deleteTask={deleteTaskAction}
+                        actualTask={actualTask}
+                        actualProjectId={actualProjectId}
+                        deleteChangingDate={deleteChangingDate}
+                        putChangingDate={putChangingDate}
+                        updateChangingDate={updateChangingDate}
+                        changingDatesList={changingDatesList}
+                        setLoadingParent={setLoading}
+                        getChangingDates={getChangingDates}
+                        getSingleTask={getSingleTask}
+                        accessRights={accessRights}
+                    />}
                 />
                 <Route
                     path={`/single_project/:id?/tasks/single_task/:task_id?/tasks_notifications/:page?`}
                     render={() => <NotificationsContainer
-                        accessRights={accessRights}
+                        accessRights={false}
+                        rootPath={`/single_project/${actualProjectId}/tasks/single_task/${actualTask.task_id}/tasks_notifications/`}
                     />}
                 />
                 <Route

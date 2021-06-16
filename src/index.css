@@ -22,17 +22,17 @@
 
 
 .gray_date.red_date {
-    background: linear-gradient(0deg, grey 50%, coral 50%) !important;
+    background: linear-gradient(0deg, goldenrod 50%, coral 50%) !important;
 }
 .green_date.red_date {
     background: linear-gradient(0deg, olivedrab 50%, coral 50%) !important;
 }
 .green_date.gray_date {
-    background: linear-gradient(0deg, olivedrab 50%, grey 50%) !important;
+    background: linear-gradient(0deg, olivedrab 50%, goldenrod 50%) !important;
 }
 
 .gray_date.red_date.green_date {
-    background: linear-gradient(0deg, olivedrab 0%, grey 33%, coral 66%) !important;
+    background: linear-gradient(0deg, olivedrab, goldenrod, coral) !important;
 }
 
 

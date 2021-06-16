@@ -7,6 +7,7 @@ import profileReducer from "./reducers/profile_reducer";
 import projectReducer from './reducers/projects_reducer'
 import achReducer from './reducers/ach_reducer'
 import workingTimeReducer from './reducers/working_time_requcer'
+import tasksReducer from "./reducers/tasks_reducer";
 
 const reducers = combineReducers({
     auth: authReducer,
@@ -15,7 +16,8 @@ const reducers = combineReducers({
     notifications: notificationsReducer,
     profile: profileReducer,
     ach: achReducer,
-    wt: workingTimeReducer
+    wt: workingTimeReducer,
+    tasks: tasksReducer
 })
 
 // Выбирается функция compose в зависимости от наличия плагина Redux DevTools

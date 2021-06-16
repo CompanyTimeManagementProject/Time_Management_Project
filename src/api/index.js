@@ -359,7 +359,6 @@ export const tasksAPI = {
             : `tasks/get/${projectId}?page=${page - 1}&pagSize=${pagSize}`
 
         return request.get(url)
-
     },
     getDevelopersTasks(projectId, title, page, pagSize, developerId) {
         const url = title

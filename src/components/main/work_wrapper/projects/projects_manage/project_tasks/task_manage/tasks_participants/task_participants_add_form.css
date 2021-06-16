@@ -1,5 +1,6 @@
 .add_form {
     display: flex;
+    flex-direction: row;
 }
 .add_form > button {
     width: 200px;

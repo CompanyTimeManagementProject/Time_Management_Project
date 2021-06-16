@@ -23,8 +23,9 @@ export default function SingleAch({
         />
 
     let imgLnk = '/ach_img/trophy_icon_by_papillonstudio_d9dtwte_w394_h394.png'
-    if(ach.linkIMG && ach.linkIMG.trim().length > 0)
+    if(ach.linkIMG && ach.linkIMG.trim().length > 0 && ach.linkIMG.toLowerCase().trim() !== 'null') {
         imgLnk = ach.linkIMG
+    }
 
     const avatarStyle = {
         background: `no-repeat center url(${imgLnk})`,

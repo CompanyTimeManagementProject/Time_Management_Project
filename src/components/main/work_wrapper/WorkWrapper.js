@@ -74,7 +74,10 @@ export default function WorkWrapper(props) {
                     />}/>
 
                     <Route path={`/notifications/:page?`}
-                           render={() => <AllNotificationsContainer />}/>
+                           render={() => <AllNotificationsContainer
+                                rootPath={`/notifications/`}
+                                accessRights={true}
+                           />}/>
                 </>
             }
         </div>
