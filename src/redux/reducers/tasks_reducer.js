@@ -97,6 +97,18 @@ export function getDevelopersTasks(projectId, page, developerId, title) {
     }
 }
 
+export function getAllDevelopersTasks(developerId, isAdmin) {
+    return async (dispatch, getState) => {
+        debugger
+        const response = await tasksAPI.getTasksByDeveloperId(developerId, isAdmin)
+        if(successResponseCondition(response.status, response.data.errMessage)) {
+            return response.data
+        } else {
+            return Promise.reject(new Error(response.data.errMessage))
+        }
+    }
+}
+
 export function getSingleTask(taskId) {
     return async dispatch => {
         const response = await tasksAPI.getTask(taskId)

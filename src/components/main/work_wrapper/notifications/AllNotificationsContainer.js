@@ -14,7 +14,6 @@ import {
 
 function mapStateToProps(state) {
     return {
-        accessRights: selectors.isAdminSelector(state),
         notificationsList: selectors.notificationsListSelector(state),
         totalNotificationsCount: selectors.totalNotificationsCountSelector(state),
         paginationSize: selectors.notificationsPaginationSize(state),

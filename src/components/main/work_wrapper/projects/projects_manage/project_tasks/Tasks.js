@@ -1,6 +1,7 @@
 import React from 'react'
 import {Route} from 'react-router-dom'
 import AllTasks from './all_tasks/AllTasksSide'
+import TaskManage from './task_manage/TasksManageSide'
 
 export default function Tasks(props) {
     const {
@@ -52,7 +53,18 @@ export default function Tasks(props) {
             />
             <Route
                 path={`/single_project/:id?/tasks/single_task/:task_id?`}
-                render={() => <div></div>}
+                render={() => <TaskManage
+                    actualTask={actualTask}
+                    getSingleTask={getSingleTask}
+                    deleteTask={deleteTask}
+                    updateTask={updateTask}
+                    accessRights={returnTaskAccessRights(actualTask, authId)}
+                    getChangingDates={getChangingDates}
+                    deleteChangingDate={deleteChangingDate}
+                    putChangingDate={putChangingDate}
+                    updateChangingDate={updateChangingDate}
+                    changingDatesList={changingDatesList}
+                />}
             />
         </div>
     )

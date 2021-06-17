@@ -5,6 +5,37 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+.react-calendar__navigation button {
+    font-size: 30px;
+}
+
+.green_date {
+    background-color: olivedrab !important;
+}
+.gray_date {
+    background-color: goldenrod !important;
+}
+.red_date {
+    background-color: coral !important;
+}
+
+
+
+.gray_date.red_date {
+    background: linear-gradient(0deg, goldenrod 50%, coral 50%) !important;
+}
+.green_date.red_date {
+    background: linear-gradient(0deg, olivedrab 50%, coral 50%) !important;
+}
+.green_date.gray_date {
+    background: linear-gradient(0deg, olivedrab 50%, goldenrod 50%) !important;
+}
+
+.gray_date.red_date.green_date {
+    background: linear-gradient(0deg, olivedrab, goldenrod, coral) !important;
+}
+
+
 html {
     height: 85%;
 }

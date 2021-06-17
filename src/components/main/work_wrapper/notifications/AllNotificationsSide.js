@@ -18,9 +18,9 @@ function AllNotificationsSide(props) {
         history,
         getNotificationsCountByDeveloperId,
         getNotificationsByDeveloperId,
-        authId
+        authId,
+        rootPath
     } = props
-
     let page = match.params.page ? +match.params.page : 1
 
     const [loading, setLoading] = useState(false)
@@ -46,7 +46,7 @@ function AllNotificationsSide(props) {
         match={match}
         location={location}
         history={history}
-        rootPath={`/notifications/`}
+        rootPath={rootPath}
         page={page}
         loading={loading}
         setLoading={setLoading}
