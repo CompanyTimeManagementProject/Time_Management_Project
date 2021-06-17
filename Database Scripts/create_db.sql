@@ -114,4 +114,3 @@ create table working_time
     foreign key (developer_id) references developers(developer_id) on delete cascade,
     foreign key (task_id) references tasks(task_id) on delete cascade
 );
-

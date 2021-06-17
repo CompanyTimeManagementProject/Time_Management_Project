@@ -1856,7 +1856,7 @@ CREATE
     
     
     CREATE
-    TRIGGER `ach_trigger` BEFORE insert 
+    TRIGGER `ach_trigger` after insert 
     ON working_time
     FOR EACH ROW BEGIN
 		declare insertingDiff integer;
@@ -1865,7 +1865,6 @@ CREATE
         declare isExists1000Ach integer;
         declare isExists10000Ach integer;
         
-        set insertingDiff = timestampdiff(hour, new.start_time, new.end_time);
         select	sum(timestampdiff(hour,  wt.start_time, wt.end_time)) into commonDiff
 		  from 	working_time wt
 		 where wt.developer_id = new.developer_id
@@ -1888,7 +1887,7 @@ CREATE
 				da.achievement_id = 3
 		;
         
-        if(commonDiff < 10 and insertingDiff + commonDiff > 10 and isExists10Ach = 0)
+        if(commonDiff >= 10 and isExists10Ach = 0)
 			then
 				insert into developer_achievements (
 					developer_id,
@@ -1896,7 +1895,7 @@ CREATE
                 ) values (new.developer_id, 1);							
 		end if;
         
-         if(commonDiff < 1000 and insertingDiff + commonDiff > 1000 and isExists1000Ach = 0)
+         if(commonDiff >= 1000 and isExists1000Ach = 0)
 			then
 				insert into developer_achievements (
 					developer_id,
@@ -1904,7 +1903,7 @@ CREATE
                 ) values (new.developer_id, 2);							
 		end if;
         
-         if(commonDiff < 10000 and insertingDiff + commonDiff > 10000 and isExists10000Ach = 0)
+         if(commonDiff >= 10000 and isExists10000Ach = 0)
 			then
 				insert into developer_achievements (
 					developer_id,
@@ -1913,5 +1912,6 @@ CREATE
 		end if;
     END$$
 DELIMITER ;
+
 
 
