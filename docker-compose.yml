@@ -1,9 +1,14 @@
-version: "1.0.0"
+version: "3.8"
 services:
+  db:
+    image: mysql
+    ports:
+      - "3306:3306"
+    container_name: blog-db
   back-main:
     build: ./services/back-main
     ports:
-      - "8080:8080"
+      - "9000:9000"
     depends_on:
       - db
     container_name: blog-api
@@ -12,8 +17,4 @@ services:
     ports:
       - "80:80"
     container_name: blog-client
-  db:
-    image: mysql
-    ports:
-      - "9000:9000"
-    container_name: blog-db
+  
