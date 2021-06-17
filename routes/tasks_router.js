@@ -272,7 +272,7 @@ tasksRouter.get('/get_by_developer/:developerId', (req, res) => {
 
 tasksRouter.get('/get_all', (req, res) => {
     try {
-        let query = sqlSafeDecorator(tasksQueries.getAllByProjectId)()
+        let query = sqlSafeDecorator(tasksQueries.getAll)()
 
         req.connection.query(
             query,
