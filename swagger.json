@@ -1210,6 +1210,106 @@
           }
         }
       }
+    },
+
+    "/working_time/delete_wt/{wtId}": {
+      "get": {
+        "tags": ["Working Time"],
+        "summary": "Delete working time.",
+        "description": "Endpoint to delete working time.",
+        "parameters": [
+          {
+            "name": "wtId",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+
+    "/working_time/get_for_calendar/:developerId/:monthNum/:yearNum": {
+      "get": {
+        "tags": ["Working Time"],
+        "summary": "Returns working_time for calendar.",
+        "description": "Endpoint to get working_time for calendar.",
+        "parameters": [
+          {
+            "name": "developerId",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "monthNum",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "yearNum",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/working_time/add": {
+      "post": {
+        "tags": ["Working Time"],
+        "summary": "Add working time.",
+        "description": "Endpoint add working time.developerId: integer, taskId: integer, startTime: date-time, endTime: date-time, wtComment: string ",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/working_time/update_status/{wtId}": {
+      "post": {
+        "tags": ["Working Time"],
+        "summary": "Update working time.",
+        "description": "Endpoint update working_time. wtId: integer, status: string",
+        "parameters": [
+          {
+            "name": "wtId",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   }
 }
