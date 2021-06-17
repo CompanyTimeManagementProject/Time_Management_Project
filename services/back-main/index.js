@@ -20,7 +20,8 @@ const connection = mysql.createConnection({
     host: config.SQL_CONNECTION_HOST,
     user: config.SQL_CONNECTION_USER,
     database: config.SQL_CONNECTION_DATABASE,
-    password: config.SQL_CONNECTION_PASSWORD
+    password: config.SQL_CONNECTION_PASSWORD,
+    port: config.SQL_CONNECTION_PORT
 })
 
 app.use(function(req, res, next) {
@@ -45,10 +46,12 @@ app.use('/notifications', notificationsRouter)
 app.use('/achievements', achievementsRouter)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
-
-app.listen(config.PORT, () => {
+const server = app.listen(config.PORT, () => {
     connection.connect(err => {
-        if(err) console.log(err)
+        if(err) {
+            console.log('must be closed')
+            server.close()
+        }
         else {
             console.log('successful')
             notificationsTimer(connection)
