@@ -4,8 +4,8 @@ import {dateToDateString} from "../components/utils/formats";
 
 const request = axios.create({baseURL: 'http://localhost:9000/'})
 
-const secretKey = 'I want to live in alaska'
-const keyForPasswords = 'Hello from Australia'
+const secretKey = 'I_want_to_live_in_alaska'
+const keyForPasswords = 'Hello_from_Australia'
 
 
 //Функция, изменяющая имя пользователя по регистру
