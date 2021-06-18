@@ -248,7 +248,7 @@ developerRouter.post('/put-avatar/:id', upload.single('image'), (req, res) => {
         const id = +req.params.id
         const imagePath = req.file.path.replace(/public./, '').replace(/\\/, '/').replace(/\\/, '/')
 
-        const query = sqlSafeDecorator(developersQueries.changeAvatarById, id, `http://localhost:${config.PORT}/` + imagePath)()
+        const query = sqlSafeDecorator(developersQueries.changeAvatarById, id, `http://35.234.116.28:${config.PORT}/` + imagePath)()
 
         req.connection.query(query, err => err
             ? resError('Failed to update avatar image', res, err)
