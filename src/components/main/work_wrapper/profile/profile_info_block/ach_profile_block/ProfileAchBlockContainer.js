@@ -6,13 +6,13 @@ import * as selectors from '../../../../../../redux/selectors'
 import React, {useEffect, useState} from 'react'
 
 
-function ProfileAchBlockContainer({authId, achList, getAchByDeveloperFromServerAndSet}) {
+function ProfileAchBlockContainer({authId, achList, getAchByDeveloperFromServerAndSet, id}) {
 
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         setLoading(true)
-        getAchByDeveloperFromServerAndSet(authId)
+        getAchByDeveloperFromServerAndSet(id)
             .catch(err => {
                 console.log(err)
                 alert(err.message)
