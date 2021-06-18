@@ -9,6 +9,7 @@ import {
 } from '../../../redux/reducers/projects_reducer'
 
 import {putDeveloper} from '../../../redux/reducers/developers_reducer'
+import {putTask} from "../../../redux/reducers/tasks_reducer";
 
 
 function mapStateToProps(state) {
@@ -24,6 +25,6 @@ export default connect(mapStateToProps, {
     getProjectById,
     deleteProject,
     changeProject,
-
+    putTask,
     putDeveloper
 })(WorkWrapper)
