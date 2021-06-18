@@ -493,6 +493,33 @@ const developersQueries = {
                  WHERE  developer_email = ${email}
                 ;
             `
+    },
+
+    getSubordinate(developerId, isAdmin) {
+        if(isAdmin)
+            return `
+                 select  d.developer_id as developerId,
+                         concat(d.developer_name,' ',d.developer_surname) as developerFullName,
+                         d.developer_is_admin as isAdmin
+                   from  developers d
+                 ;
+            `
+        else
+            return `
+                select  d.developer_id as developerId,
+                        concat(d.developer_name,' ',d.developer_surname) as developerFullName,
+                        d.developer_is_admin as isAdmin
+                  from  developers d
+                  left join developers_tasks dt
+                        on dt.developer_id = d.developer_id
+                  left join tasks t
+                        on t.task_id = dt.task_id
+                  left join projects p
+                        on p.project_id = t.project_id
+                  where t.task_lead_id = ${developerId} or
+                        p.project_lead_id = ${developerId}
+                ;
+            `
     }
 }
 

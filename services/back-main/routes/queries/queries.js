@@ -4,6 +4,7 @@ const tasksQueries = require('./tasks_queries')
 const changingDatesQueries = require('./changing_dates_queries')
 const notificationsQueries = require('./notifications_queries')
 const achievementsQueries = require('./achievents_query')
+const workingTimeQueries = require('./working_time_query')
 
 
 module.exports = {
@@ -12,5 +13,6 @@ module.exports = {
     tasksQueries,
     changingDatesQueries,
     notificationsQueries,
-    achievementsQueries
+    achievementsQueries,
+    workingTimeQueries
 }

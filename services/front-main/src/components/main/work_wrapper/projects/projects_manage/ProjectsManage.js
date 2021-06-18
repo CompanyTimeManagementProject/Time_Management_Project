@@ -68,9 +68,7 @@ export default function ProjectsManage(props) {
                 />}/>
                 <Route path={`/single_project/:id?/project_participants/:page?`} render={() => <ParticipantsContainer />}/>
                 <Route path={'/single_project/:id?/change_project'} render={
-
                     accessRights
-
                         ? () => <WorkWithProjectForm
                             onSubmit={onSubmitChangeProject}
                             initialValues={initialValuesChangeProject}

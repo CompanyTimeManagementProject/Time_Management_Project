@@ -43,3 +43,12 @@ export const tasksPaginationSizeSelector = (state) => state.tasks.paginationSize
 export const totalTasksCountSelector = (state) => state.tasks.totalTasksCount
 
 export const changingDatesListSelector = (state) => state.tasks.changingDatesList
+
+//Селекторы ачивок
+export const achListSelector = (state) => state.ach.achList
+
+
+//Селекторы рабочего времени
+export const workingTimeListSelector = (state) => {
+    return state.wt.workingTimeList
+}

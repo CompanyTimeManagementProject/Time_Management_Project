@@ -7,8 +7,9 @@ import PutDeveloperForm from './put_developer_form/PutDeveloperForm'
 import WorkWithProjectForm from './work_with_project_form/WorkWithProjectForm'
 import AllNotificationsContainer from './notifications/AllNotificationsContainer'
 import * as style from './work_wrapper.module.css'
-import ProjectsManage from "./projects/projects_manage/ProjectsManage";
-import ProjectsManageSide from "./projects/projects_manage/ProjectsManageSide";
+import ProjectsManageSide from './projects/projects_manage/ProjectsManageSide'
+import AchievementsContainer from './achievements/AchievementsContainer'
+import TimeManagementContainer from "./time_management/TimeManagementContainer";
 
 
 export default function WorkWrapper(props) {
@@ -37,10 +38,13 @@ export default function WorkWrapper(props) {
             {
                 <>
                     <Route path='/profile' exact={true} render={() => <Profile/>}/>
+                    <Route path='/achievements' exact={true} render={() => <AchievementsContainer />}/>
                     <Route path='/profile/:id' exact={true} render={() => <Profile />}/>
 
                     <Route path='/projects/:page?' render={() => <Projects />}/>
                     <Route path='/developers/:page?' render={() => <DevelopersContainer
+                    />}/>
+                    <Route path='/time_management' render={() => <TimeManagementContainer
 
                     />}/>
 
@@ -70,8 +74,10 @@ export default function WorkWrapper(props) {
                     />}/>
 
                     <Route path={`/notifications/:page?`}
-                           render={() => <AllNotificationsContainer />}/>
-
+                           render={() => <AllNotificationsContainer
+                                rootPath={`/notifications/`}
+                                accessRights={true}
+                           />}/>
                 </>
             }
         </div>

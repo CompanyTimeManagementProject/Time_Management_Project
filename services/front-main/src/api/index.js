@@ -1,16 +1,55 @@
 import axios from 'axios'
 import cryptoJS from 'crypto-js'
-const request = axios.create({ baseURL: 'http://localhost:9000/' })
+import {dateToDateString} from "../components/utils/formats";
+import {config} from "../config";
 
-const secretKey = 'I want to live in alaska'
-const keyForPasswords = 'Hello from Australia'
+const request = axios.create({baseURL: config.SERVER_ADDRESS})
+
+const secretKey = 'I_want_to_live_in_alaska'
+const keyForPasswords = 'Hello_from_Australia'
 
 
 //Функция, изменяющая имя пользователя по регистру
 const titleItemsChange = (nameItem) => {
-    if(!nameItem)
+    if (!nameItem)
         return ''
     return nameItem.slice(0, 1).toUpperCase() + nameItem.slice(1, nameItem.length).toLowerCase()
+}
+
+export const workingTimeAPI = {
+    getByDeveloperIdAndDates(developerId, date) {
+        const fullFormatedDate = dateToDateString(date)
+        const url = `working_time/get/${developerId}?date=${fullFormatedDate}`
+        return request.get(url)
+    },
+
+    addWt(developerId, taskId, startTime, endTime, wtComment) {
+        const url = `working_time/add`
+        return request.post(url, {
+            developerId,
+            taskId,
+            startTime,
+            endTime,
+            wtComment
+        })
+    },
+
+    deleteWt(wtId) {
+        const url = `working_time/delete_wt/${wtId}`
+        return request.get(url)
+    },
+
+    updateStatus(wtId, status) {
+        const url = `working_time/update_status/${wtId}`
+        return request.post(url, {
+            status
+        })
+    },
+
+    fillCalendar(developerId, month, year) {
+        const url = `working_time/get_for_calendar/${developerId}/${month}/${year}`
+        return request.get(url)
+    }
 }
 
 export const changingDatesAPI = {
@@ -27,7 +66,7 @@ export const changingDatesAPI = {
     //В записях нет права изменять даты, только причину (Например в случае опечатки)
     updateChangingDate(changingDateId, cause) {
         const url = `changing_dates/update/${changingDateId}`
-        return request.post(url, { cause })
+        return request.post(url, {cause})
     },
 
     putChangingDate(cause, deadlineBefore, deadlineAfter, taskId) {
@@ -83,7 +122,7 @@ export const projectsAPI = {
     },
 
     deleteProject(id) {
-        const url  = `projects/delete/${id}`
+        const url = `projects/delete/${id}`
         return request.get(url)
     },
 
@@ -100,6 +139,11 @@ export const projectsAPI = {
 
 
 export const developersAPI = {
+    getSubordinates(developerId, isAdmin) {
+        const url = `developers/get_subordinates/${developerId}/${isAdmin}`
+        return request.get(url)
+    },
+
     getAuth(email, pass) {
         const hashPass = encodeURIComponent(cryptoJS.AES.encrypt(pass, keyForPasswords).toString())
         const url = `developers/get_auth`
@@ -239,7 +283,7 @@ export const developersAPI = {
         const fd = new FormData()
         fd.append('image', file, `${Date.now()}_${file.name}`)
 
-        let url = `http://localhost:9000/developers/put-avatar/${id}`
+        let url = `${config.SERVER_ADDRESS}developers/put-avatar/${id}`
 
         //Используется нативный fetch из-за несовместимости библиотеки multer(для работы с изображением) и axios
         return fetch(url, {
@@ -298,18 +342,24 @@ export const notificationsAPI = {
 
     updateNotification(notificationId, content) {
         const url = `notifications/update_notification/${notificationId}`
-        return request.post(url, { content })
+        return request.post(url, {content})
     }
 }
 
 export const tasksAPI = {
+    getTasksByDeveloperId(developerId, isAdmin) {
+        const url = isAdmin
+            ? `tasks/get_all`
+            : `tasks/get_by_developer/${developerId}`
+        return request.get(url)
+    },
+
     getTasks(projectId, title, page, pagSize) {
         const url = title
             ? `tasks/get/${projectId}?title=${title}&page=${page - 1}&pagSize=${pagSize}`
             : `tasks/get/${projectId}?page=${page - 1}&pagSize=${pagSize}`
 
         return request.get(url)
-
     },
     getDevelopersTasks(projectId, title, page, pagSize, developerId) {
         const url = title
@@ -381,6 +431,50 @@ export const tasksAPI = {
         return request.post(url, {
             taskId,
             developerId
+        })
+    }
+}
+
+export const achAPI = {
+    getByDeveloperId(developerId, page, pageSize) {
+        const url = `achievements/get_by_developer/${developerId}?page=${page}&pagSize=${pageSize}`
+        return request.get(url)
+    },
+
+    getAllPossibleAch(page, pageSize) {
+        const url = `achievements/get?page=${page}&pagSize=${pageSize}`
+        return request.get(url)
+    },
+
+    addAch(title, description) {
+        const url = `achievements/put`
+        return request.post(url, {
+            title,
+            description
+        })
+    },
+
+    deleteAch(achId) {
+        const url = `achievements/delete/${achId}`
+        return request.get(url)
+    },
+
+    updateAch(achId, title, description) {
+        const url = `achievements/update/${achId}`
+        return request.post(url, {
+            title,
+            description
+        })
+    },
+
+    updateImg(achId, img) {
+        const fd = new FormData()
+        fd.append('image', img, `${Date.now()}_${img.name}`)
+        let url = `${config.SERVER_ADDRESS}achievements/change_img/${achId}`
+
+        return fetch(url, {
+            method: 'POST',
+            body: fd
         })
     }
 }

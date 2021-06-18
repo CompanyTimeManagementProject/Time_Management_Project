@@ -1,6 +1,7 @@
 import React from 'react'
 import {dateStringFormat} from '../../../../utils/formats'
 import * as style from '../profile.module.css'
+import ProfileAchBlockContainer from "./ach_profile_block/ProfileAchBlockContainer";
 
 export default function ProfileInfo({profileInformation}) {
     return (
@@ -22,6 +23,10 @@ export default function ProfileInfo({profileInformation}) {
             <p>
                 Email: <b>{profileInformation.email}</b>
             </p>
+
+            <ProfileAchBlockContainer
+
+            />
         </div>
     )
 }

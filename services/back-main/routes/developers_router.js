@@ -19,14 +19,14 @@ const storage = multer.diskStorage({
 const upload = multer({storage})
 
 //Секретные ключи для декодирования захешированных данных
-const secretKey = 'I want to live in alaska'
-const keyForPasswords = 'Hello from Australia'
+const secretKey = 'I_want_to_live_in_alaska'
+const keyForPasswords = 'Hello_from_Australia'
 
 //Функция декодинга даннных с клиента. Для исключения лишних символов,
 //которые могут мешать передаче через URL используется encodeURIComponent на
 //клиенте, соответственно здесь используется обратная функция
 function decodeData(data, key) {
-    return data ? decodeURIComponent(cryptoJS.AES.decrypt(data, key).toString(cryptoJS.enc.Utf8)) : ''
+    return data ? decodeURIComponent(decodeURIComponent(cryptoJS.AES.decrypt(data, key)).toString(cryptoJS.enc.Utf8)) : ''
 }
 
 function getDevelopersManager(err, res, req, result, errMessage) {
@@ -423,28 +423,69 @@ developerRouter.post('/get_auth', (req, res) => {
         const password = decodeData(req.body.password, keyForPasswords)
         const query = sqlSafeDecorator(developersQueries.getAuth, email)()
 
+
         req.connection.query(
             query,
             (err, result) => {
-                if (err)
-                    return resError('Failed authorisation', res, err)
-                else {
-                    if (result.length > 0) {
-                        if (password === decodeData(result[0].developer_password, keyForPasswords)) {
-                            res.end(JSON.stringify(result))
+                try {
+                    if (err) {
+                        return resError('Failed authorisation', res, err)
+                    }
+                    else {
+                        if (result.length > 0) {
+                            let authCounter = 0
+                            while(authCounter !== 3) {
+                                if (password === decodeData(result[0].developer_password, keyForPasswords)) {
+                                    authCounter = 3
+                                    return res.end(JSON.stringify(result))
+                                } else if(authCounter === 3) {
+                                    return resError('Неверное имя пользователя или пароль', res, err)
+                                } else {
+                                    authCounter++
+                                }
+                            }
                         } else {
-                            return resError('Неверное имя пользователя или пароль', res, err)
+                            return res.end(JSON.stringify([]))
                         }
-                    } else
-                        return res.end(JSON.stringify([]))
+                    }
+                } catch (newErr) {
+                    console.log(err.stackTrace)
+                    return resError('Failed authorisation', res, newErr)
                 }
+
             }
         )
-
     } catch (err) {
         return resError('Failed authorisation', res, err)
     }
 })
+
+developerRouter.get('/get_subordinates/:developerId/:isAdmin', (req, res) => {
+    try {
+        const developerId = +req.params.developerId
+        const isAdmin = req.params.isAdmin === 'true'
+
+        console.log(developerId)
+        console.log(isAdmin)
+
+        const query = sqlSafeDecorator(
+            developersQueries.getSubordinate,
+            developerId,
+            isAdmin
+        )()
+
+        req.connection.query(
+            query,
+            (err, result) => err
+                ? resError('Failed to get subordinates', res, err)
+                : res.end(JSON.stringify(result))
+        )
+
+    } catch (err) {
+        return resError('Сouldn\'t get subordinates', res, err)
+    }
+})
+
 
 
 module.exports = developerRouter

@@ -38,7 +38,7 @@ CREATE TABLE `developer_achievements` (
 
 LOCK TABLES `developer_achievements` WRITE;
 /*!40000 ALTER TABLE `developer_achievements` DISABLE KEYS */;
-INSERT INTO `developer_achievements` VALUES (1,1),(2,1),(3,1),(3,2),(3,3);
+INSERT INTO `developer_achievements` VALUES (1,1),(2,1),(3,1),(4,1),(7,1),(1,2);
 /*!40000 ALTER TABLE `developer_achievements` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-13 13:39:24
+-- Dump completed on 2021-06-18  2:27:58

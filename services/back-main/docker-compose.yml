@@ -23,12 +23,13 @@ services:
       - MYSQL_PASS=alex
       - MYSQL_DB=company
     ports:
-      - "8005:9000"
+      - "9000:9000"
     container_name: moe-nodejs-app
   mysql:
     image: mysql:8.0
     volumes:
       - ./dump:/docker-entrypoint-initdb.d
+      - ./dump/mysql_local.cnf:/etc/mysql/conf.d/mysql_local.cnf:ro
     networks:
       - backend
     environment:

@@ -7,7 +7,7 @@
  */
 
 const tasksQueries = {
-    getAll(projectId, page, pageSize) {
+    getAllByProjectId(projectId, page, pageSize) {
         return `
                 SELECT  *
                   FROM  tasks
@@ -198,6 +198,28 @@ const tasksQueries = {
                         task_actual_deadline <= DATE_ADD(${stringTime}, INTERVAL -1 DAY)
                 ;
             `
+    },
+
+    getAllDevelopersTasks(developerId) {
+        return `
+            select  t.task_id,
+                    t.task_title
+                  from  developers d
+                  left join developers_tasks dt
+                    on dt.developer_id = d.developer_id
+                  left join tasks t
+                    on t.task_id = dt.task_id
+                 where  d.developer_id = ${developerId}
+                ;
+        `
+    },
+
+    getAll() {
+        return `
+            select  *
+              from  tasks
+            ;
+        `
     }
 }
 
