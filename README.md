@@ -13,14 +13,14 @@
 - [ТЗ.docx](https://github.com/CompanyTimeManagementProject/Time_Management_Project/blob/master/Documentation/%D0%A2%D0%97.docx) <br>
 - [ТЗ.pdf](https://github.com/CompanyTimeManagementProject/Time_Management_Project/blob/master/Documentation/%D0%A2%D0%97.pdf) <br>
 - [Курсовой проект.docx](https://github.com/CompanyTimeManagementProject/Time_Management_Project/blob/master/Documentation/%D0%9A%D1%83%D1%80%D1%81%D0%BE%D0%B2%D0%BE%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82.docx)
-- [Курсовой проект.pdf]()
+- [Курсовой проект.pdf](https://github.com/CompanyTimeManagementProject/Time_Management_Project/blob/master/Documentation/%D0%9A%D1%83%D1%80%D1%81%D0%BE%D0%B2%D0%BE%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82.pdf)
 - [Отчёт по ролям.docx](https://github.com/CompanyTimeManagementProject/Time_Management_Project/blob/master/Documentation/%D0%9E%D1%82%D1%87%D0%B5%D1%82%20%D0%BF%D0%BE%20%D1%80%D0%BE%D0%BB%D1%8F%D0%BC.docx)
 - [Отчёт по ролям.pdf](https://github.com/CompanyTimeManagementProject/Time_Management_Project/blob/master/Documentation/%D0%9E%D1%82%D1%87%D0%B5%D1%82%20%D0%BF%D0%BE%20%D1%80%D0%BE%D0%BB%D1%8F%D0%BC.pdf)
 - [Swagger](http://35.234.116.28:9000/api-docs/#/)
-- 
 - [Демо-видео проекта](https://youtu.be/Iz7MD6xBSEA)
 - [Презентация](https://github.com/CompanyTimeManagementProject/Time_Management_Project/blob/master/Documentation/%D0%9F%D1%80%D0%B5%D0%B7%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D1%8F%20ITime%20Last%20Version.pptx)
 - [Защита проекта]()
+- [Метрика](https://metrika.yandex.ru/dashboard?group=day&period=week&id=81173881)
 
 # Сайт
 - [ITime](http://35.234.116.28:3000/)
