@@ -116,7 +116,7 @@ function getQueryManager(email, surname, emailAndSurnameCB, emailCB, surnameCB, 
 
 developerRouter.get('/get', (req, res) => {
     try {
-        const decryptedEmail = decodeData(req.query.email, secretKey)
+        const decryptedEmail = req.query.email
         const page = +req.query.page
         const pagSize = +req.query.pagSize
         const surname = req.query.surname
@@ -151,7 +151,7 @@ developerRouter.get('/get/:id', (req, res) => {
 developerRouter.get('/get_by_task/:task_id', (req, res) => {
     try {
         const taskId = +req.params.task_id
-        const decryptedEmail = decodeData(req.query.email, secretKey)
+        const decryptedEmail = req.query.email
         const page = +req.query.page
         const pagSize = +req.query.pagSize
         const surname = req.query.surname
@@ -175,7 +175,7 @@ developerRouter.get('/get_by_task/:task_id', (req, res) => {
 developerRouter.get('/get_by_project/:project_id', (req, res) => {
     try {
         const projectsId = +req.params.project_id
-        const decryptedEmail = decodeData(req.query.email, secretKey)
+        const decryptedEmail = req.query.email
         const page = +req.query.page
         const pagSize = +req.query.pagSize
         const surname = req.query.surname
@@ -305,7 +305,7 @@ developerRouter.post('/put', (req, res) => {
 developerRouter.get('/count', async (req, res) => {
     try {
 
-        const decryptedEmail = decodeData(req.query.email, secretKey)
+        const decryptedEmail = req.query.email
         const surname = req.query.surname
 
         const query = getQueryManager(
@@ -331,7 +331,7 @@ developerRouter.get('/count', async (req, res) => {
 developerRouter.get('/count_by_task/:task_id', (req, res) => {
     try {
         const taskId = +req.params.task_id
-        const decryptedEmail = decodeData(req.query.email, secretKey)
+        const decryptedEmail = req.query.email
         const surname = req.query.surname
 
         const query = getQueryManager(
@@ -356,7 +356,7 @@ developerRouter.get('/count_by_task/:task_id', (req, res) => {
 developerRouter.get('/count_by_project/:project_id', (req, res) => {
     try {
         const projectId = +req.params.project_id
-        const decryptedEmail = decodeData(req.query.email, secretKey)
+        const decryptedEmail = req.query.email
         const surname = req.query.surname
 
         const query = getQueryManager(
@@ -382,7 +382,7 @@ developerRouter.get('/count_by_project/:project_id', (req, res) => {
 //Проверка доступности email для обновления или добавления
 developerRouter.get('/checkEmail/:email/:id', async (req, res) => {
     try {
-        const email = decodeData(req.params.email, secretKey)
+        const email = req.params.email
         const id = +req.params.id
 
         req.connection.query(
@@ -398,7 +398,7 @@ developerRouter.get('/checkEmail/:email/:id', async (req, res) => {
 
 developerRouter.get('/check-by-developer/:email', (req, res) => {
     try {
-        const email = decodeData(req.params.email, secretKey)
+        const email = req.params.email
         const query = sqlSafeDecorator(developersQueries.checkByDeveloper, email)()
 
         req.connection.query(
