@@ -17,9 +17,9 @@
 - [Отчёт по ролям.docx](https://github.com/CompanyTimeManagementProject/Time_Management_Project/blob/master/Documentation/%D0%9E%D1%82%D1%87%D0%B5%D1%82%20%D0%BF%D0%BE%20%D1%80%D0%BE%D0%BB%D1%8F%D0%BC.docx)
 - [Отчёт по ролям.pdf](https://github.com/CompanyTimeManagementProject/Time_Management_Project/blob/master/Documentation/%D0%9E%D1%82%D1%87%D0%B5%D1%82%20%D0%BF%D0%BE%20%D1%80%D0%BE%D0%BB%D1%8F%D0%BC.pdf)
 - [Swagger](http://35.234.116.28:9000/api-docs/#/)
-- [Презентация]()
-- [Демо-видео проекта]()
 - 
+- [Демо-видео проекта]()
+- [Презентация]()
 - [Защита проекта]()
 
 # Сайт
