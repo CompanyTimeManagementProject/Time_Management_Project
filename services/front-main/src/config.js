@@ -1,3 +1,3 @@
 export const config = {
-    SERVER_ADDRESS: 'http://10.156.0.3:9000/'
+    SERVER_ADDRESS: 'http://35.234.116.28:9000/'
 }
