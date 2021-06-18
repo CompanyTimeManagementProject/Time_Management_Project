@@ -40,7 +40,7 @@ function getDevelopersManager(err, res, req, result, errMessage) {
             //Приведение даты рождения к часовому поясу +4 часа у каждого найденного разработчика
             developer.developer_birth = new Date(Date.parse(developer.developer_birth) + 1000 * 60 * 60 * 4)
 
-            developer.developer_avatar_url = developer.developer_avatar_url || `http://localhost:${config.PORT}/images/avatar.png`
+            developer.developer_avatar_url = developer.developer_avatar_url || `http://35.234.116.28:${config.PORT}/images/avatar.png`
             developer.developer_patronymic = developer.developer_patronymic || ''
 
             //Запросы на получение данных о специальности и позиции разработчика.
