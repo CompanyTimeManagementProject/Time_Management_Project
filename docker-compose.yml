@@ -1,5 +1,4 @@
 version: "3.2"
-container_name: company
 services:
   react:
     build:
@@ -29,7 +28,7 @@ services:
   mysql:
     image: mysql:8.0
     volumes:
-      - ./services/back-main/dump
+      - ./services/back-main/dump:/docker-entrypoint-initdb.d
     networks:
       - backend
     environment:
