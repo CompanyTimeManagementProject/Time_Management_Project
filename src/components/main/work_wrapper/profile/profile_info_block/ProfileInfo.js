@@ -3,7 +3,7 @@ import {dateStringFormat} from '../../../../utils/formats'
 import * as style from '../profile.module.css'
 import ProfileAchBlockContainer from "./ach_profile_block/ProfileAchBlockContainer";
 
-export default function ProfileInfo({profileInformation}) {
+export default function ProfileInfo({profileInformation, id}) {
     return (
         <div className={style.text_info}>
             <p className={style.full_name}>
@@ -25,7 +25,7 @@ export default function ProfileInfo({profileInformation}) {
             </p>
 
             <ProfileAchBlockContainer
-
+                id={id}
             />
         </div>
     )

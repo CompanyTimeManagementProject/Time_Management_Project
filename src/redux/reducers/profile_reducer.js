@@ -60,7 +60,7 @@ export function getProfile(id) {
 export function changeAvatar(id, file) {
     return async (dispatch) => {
         const response = await developersAPI.changeAvatar(id, file)
-        if(successResponseCondition(response.status, response.data.errMessage)) {
+        if(successResponseCondition(response.status, response.data?.errMessage)) {
             return dispatch(getProfile(id))
         } else {
             return Promise.reject(new Error(response.data.errMessage))

@@ -46,7 +46,10 @@ function AchievementsContainer({getAchFromServerAndSet, achList, addAchOnServ}) 
                 console.log(err)
                 alert(err.message)
             })
-            .finally(() => setLoading(false))
+            .finally(() => {
+                setLoading(false)
+                setAddFormOpen(false)
+            })
     }
 
 
