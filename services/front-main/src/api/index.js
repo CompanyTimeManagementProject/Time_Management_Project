@@ -5,7 +5,6 @@ import {config} from "../config";
 
 const request = axios.create({baseURL: config.SERVER_ADDRESS})
 
-const secretKey = 'I_want_to_live_in_alaska'
 const keyForPasswords = 'Hello_from_Australia'
 
 
@@ -157,7 +156,7 @@ export const developersAPI = {
     },
 
     getAll(actualPage, paginationSize, email, surname) {
-        const hashEmail = encodeURIComponent(cryptoJS.AES.encrypt(email, secretKey).toString())
+        const hashEmail = email
 
         let url = `developers/get?page=${actualPage - 1}&pagSize=${paginationSize}`
         if (surname && email) {
@@ -175,7 +174,7 @@ export const developersAPI = {
     },
 
     getByTask(taskId, page, pagSize, email, surname) {
-        const hashEmail = encodeURIComponent(cryptoJS.AES.encrypt(email, secretKey).toString())
+        const hashEmail = email
 
         let url = `developers/get_by_task/${taskId}?page=${page - 1}&pagSize=${pagSize}`
         if (surname && email) {
@@ -189,7 +188,7 @@ export const developersAPI = {
     },
 
     getByProject(projectId, page, pagSize, email, surname) {
-        const hashEmail = encodeURIComponent(cryptoJS.AES.encrypt(email, secretKey).toString())
+        const hashEmail = email
 
         let url = `developers/get_by_project/${projectId}?page=${page - 1}&pagSize=${pagSize}`
         if (surname && email) {
@@ -227,7 +226,7 @@ export const developersAPI = {
     },
 
     getDevelopersCount(email, surname) {
-        const hashEmail = encodeURIComponent(cryptoJS.AES.encrypt(email, secretKey).toString())
+        const hashEmail = email
         let url = 'developers/count'
         if (surname && email) {
             url = `developers/count?surname=${titleItemsChange(surname)}&email=${hashEmail}`
@@ -241,7 +240,7 @@ export const developersAPI = {
 
     getDevelopersCountByTask(taskId, email, surname) {
 
-        const hashEmail = encodeURIComponent(cryptoJS.AES.encrypt(email, secretKey).toString())
+        const hashEmail = email
         let url = `developers/count_by_task/${taskId}`
         if (surname && email) {
             url = `developers/count_by_task/${taskId}?surname=${titleItemsChange(surname)}&email=${hashEmail}`
@@ -254,7 +253,7 @@ export const developersAPI = {
     },
 
     getDevelopersCountByProject(projectId, email, surname) {
-        const hashEmail = encodeURIComponent(cryptoJS.AES.encrypt(email, secretKey).toString())
+        const hashEmail = email
         let url = `developers/count_by_project/${projectId}`
         if (surname && email) {
             url = `developers/count_by_project/${projectId}?surname=${titleItemsChange(surname)}&email=${hashEmail}`
@@ -267,13 +266,13 @@ export const developersAPI = {
     },
 
     async checkEmail(email, id) {
-        const hashEmail = encodeURIComponent(cryptoJS.AES.encrypt(email, secretKey).toString())
+        const hashEmail = email
         let url = `developers/checkEmail/${hashEmail}/${id}`
         return (await request.get(url)).data
     },
 
     async checkByDeveloper(email) {
-        const hashEmail = encodeURIComponent(cryptoJS.AES.encrypt(email, secretKey).toString())
+        const hashEmail = email
         let url = `developers/check-by-developer/${hashEmail}`
         return (await request.get(url)).data
     },

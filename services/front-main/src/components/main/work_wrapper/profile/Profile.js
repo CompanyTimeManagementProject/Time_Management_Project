@@ -107,6 +107,7 @@ export default function Profile(props) {
                         : <ProfileInfo
                             profileInformation={profileInformation}
                             setChanging={setChanging}
+                            id={id}
                             deleteDeveloper={() => deleteDeveloper(id)}
                         />
                 }
