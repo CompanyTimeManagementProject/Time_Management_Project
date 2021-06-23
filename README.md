@@ -19,7 +19,7 @@
 - [Swagger](http://35.234.116.28:9000/api-docs/#/)
 - [Демо-видео проекта](https://youtu.be/Iz7MD6xBSEA)
 - [Презентация](https://github.com/CompanyTimeManagementProject/Time_Management_Project/blob/master/Documentation/%D0%9F%D1%80%D0%B5%D0%B7%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D1%8F%20ITime%20Last%20Version.pptx)
-- [Защита проекта]()
+- [Защита проекта](https://youtu.be/oldHFnfmCyY)
 - [Метрика](https://metrika.yandex.ru/dashboard?group=day&period=week&id=81173881)
 
 # Сайт
